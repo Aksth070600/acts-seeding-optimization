@@ -37,8 +37,6 @@ p.add("Generating Scaling data", "data-gen/Results/Seeding3/Scaling.py", output=
 ])
 p.add("Generating Scaling figure", "figure-gen/Results/Seeding3/Scaling.py")
 
-# Gperftools steps always_run; pprof resolves PCs against the live ACTS
-# binary, which is invalidated by any other variant's rebuild.
 _GPERF3     = "raw-data/Results/Seeding3/Gperftools"
 _GPERF3_FIG = "figures/Results/Seeding3/Gperftools"
 
@@ -52,11 +50,10 @@ p.add("Generating Gperftools data + reports (S1+S2)",
     f"{_GPERF3_FIG}/Seeding2_flamegraph.svg",
     f"{_GPERF3_FIG}/Seeding_callgraph.pdf",
     f"{_GPERF3_FIG}/Seeding2_callgraph.pdf",
-], always_run=True)
+])
 p.add("Generating Gperftools comparison table (S1+S2)",
       "figure-gen/Results/Seeding3/Gperftools.py",
-      output=[f"{_GPERF3_FIG}/Seeding_vs_Seeding2_comparison.tex"],
-      always_run=True)
+      output=[f"{_GPERF3_FIG}/Seeding_vs_Seeding2_comparison.tex"])
 
 p.add("Generating Gperftools data + reports (S3)",
       "data-gen/Results/Seeding3/gperftoolsSeeding3.py", output=[
@@ -64,11 +61,10 @@ p.add("Generating Gperftools data + reports (S3)",
     f"{_GPERF3}/Seeding3_report.txt",
     f"{_GPERF3_FIG}/Seeding3_flamegraph.svg",
     f"{_GPERF3_FIG}/Seeding3_callgraph.pdf",
-], always_run=True)
+])
 p.add("Generating Gperftools comparison table (S3)",
       "figure-gen/Results/Seeding3/Gperftools3.py",
-      output=[f"{_GPERF3_FIG}/Seeding2_vs_Seeding3_comparison.tex"],
-      always_run=True)
+      output=[f"{_GPERF3_FIG}/Seeding2_vs_Seeding3_comparison.tex"])
 
 if __name__ == "__main__":
     p.run()

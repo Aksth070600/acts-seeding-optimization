@@ -30,20 +30,17 @@ _METHODS_S2 = [
 p.add("Scaling figures",  "figure-gen/Results/Baseline/Scaling.py",
       requires=_METHODS_S2)
 
-# pprof needs the live ACTS binary; always_run.
 p.add("Gperftools figures (Baseline)", "figure-gen/Results/Baseline/Gperftools.py",
       output=[
           "figures/Results/Baseline/Gperftools/Pixel_comparison.tex",
           "figures/Results/Baseline/Gperftools/Strip_comparison.tex",
-      ],
-      always_run=True)
+      ])
 p.add("Gperftools hotspot annotations (Detailed)",
       "figure-gen/Results/Detailed/GperftoolsHotspots.py",
       output=[
           "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Pixel_H1_createDoubletsImpl_annotation.txt",
           "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Strip_H1_createDoubletsImpl_annotation.txt",
-      ],
-      always_run=True)
+      ])
 p.add("Gperftools top-20 + portrait flamegraphs (Detailed)",
       "figure-gen/Results/Detailed/Gperftools.py",
       output=[
@@ -51,8 +48,7 @@ p.add("Gperftools top-20 + portrait flamegraphs (Detailed)",
           "figures/Results/Detailed/Gperftools/Strip_Seeding2_top20.tex",
           "figures/Results/Detailed/Gperftools/Pixel_Seeding2_flamegraph.svg",
           "figures/Results/Detailed/Gperftools/Strip_Seeding2_flamegraph.svg",
-      ],
-      always_run=True)
+      ])
 
 if __name__ == "__main__":
     p.run()

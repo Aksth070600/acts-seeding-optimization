@@ -101,9 +101,6 @@ class Pipeline:
                     print(f"  [{i}/{n}] {description} ... skipped (missing: {', '.join(missing_reqs)})")
                     continue
 
-            # always_run bypasses the output-cache skip — gperftools
-            # resolves PC addresses against the live ACTS binary, which
-            # changes whenever any other variant is built.
             if outputs and not always_run:
                 full_outputs = [ROOT_DIR / o if not Path(o).is_absolute() else Path(o) for o in outputs]
                 missing = [o for o in full_outputs if not o.exists()]

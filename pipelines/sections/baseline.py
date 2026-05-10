@@ -59,8 +59,6 @@ _METHODS_S2 = [
 p.add("Generating Scaling figures", "figure-gen/Results/Baseline/Scaling.py",
       requires=_METHODS_S2)
 
-# Gperftools steps always_run; pprof needs the live ACTS binary, which
-# is invalidated by any other variant's rebuild.
 _GPERF = "raw-data/Results/Baseline/Gperftools"
 _gperf_outputs = []
 for stem in ("PixelSeeding", "PixelSeeding2", "StripSeeding", "StripSeeding2"):
@@ -69,21 +67,18 @@ p.add(
     "Generating Gperftools data",
     "data-gen/Results/Baseline/gperftools.py",
     output=_gperf_outputs,
-    always_run=True,
 )
 p.add("Generating Gperftools figures (Baseline)", "figure-gen/Results/Baseline/Gperftools.py",
       output=[
           "figures/Results/Baseline/Gperftools/Pixel_comparison.tex",
           "figures/Results/Baseline/Gperftools/Strip_comparison.tex",
-      ],
-      always_run=True)
+      ])
 p.add("Generating Gperftools hotspot annotations (Detailed)",
       "figure-gen/Results/Detailed/GperftoolsHotspots.py",
       output=[
           "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Pixel_H1_createDoubletsImpl_annotation.txt",
           "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Strip_H1_createDoubletsImpl_annotation.txt",
-      ],
-      always_run=True)
+      ])
 p.add("Generating Gperftools top-20 + portrait flamegraphs (Detailed)",
       "figure-gen/Results/Detailed/Gperftools.py",
       output=[
@@ -91,8 +86,7 @@ p.add("Generating Gperftools top-20 + portrait flamegraphs (Detailed)",
           "figures/Results/Detailed/Gperftools/Strip_Seeding2_top20.tex",
           "figures/Results/Detailed/Gperftools/Pixel_Seeding2_flamegraph.svg",
           "figures/Results/Detailed/Gperftools/Strip_Seeding2_flamegraph.svg",
-      ],
-      always_run=True)
+      ])
 
 if __name__ == "__main__":
     p.run()
