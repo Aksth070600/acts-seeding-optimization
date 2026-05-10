@@ -8,7 +8,7 @@ Before any of these scripts will succeed:
 
 - An Apptainer (Singularity) shell with CVMFS mounted at `/cvmfs/sft.cern.ch/`. The scripts source `/cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-el9-gcc13-opt/setup.sh`. If that path does not exist, nothing further will work.
 - A local gperftools install at `$HOME/usr/local/`, or a different path provided through the environment variable `ACTS_GPERF_DIR`. Required because ACTS is configured with `-DACTS_ENABLE_CPU_PROFILING=ON`.
-- `git-lfs` available on `PATH`. LCG 105 does not ship it, so `setupACTS.sh` installs a static binary into `$HOME/usr/local/bin/` on first run (pinned by `GIT_LFS_VERSION`, overridable with `GIT_LFS_PREFIX`). The binary persists across shells.
+- `git-lfs` available on `PATH`. LCG 105 does not ship it, so `setupACTS.sh` installs a static binary into `$HOME/usr/local/bin/` on first run (pinned by `GIT_LFS_VERSION`, overridable with `GIT_LFS_PREFIX`) and registers the LFS filters before cloning. The binary persists across shells. (LFS-tracked content lives in the OpenDataDetector submodule — most importantly `data/odd-material-maps.root`. Without LFS the file checks out as a 133-byte pointer stub and ACTS aborts at runtime.)
 
 ## Python dependencies
 
