@@ -1,0 +1,29 @@
+# Shared anchor configuration for the parameter-optimisation pipeline.
+# Values are the runner defaults, the untuned starting point.
+
+etaMin: -4
+etaMax: 4
+deltaEtaMax: 0.25
+phiBinDeflectionCoverage: 3
+maxSeedsPerSpM: 5
+impactMax: 20
+compatSeedLimit: 2
+deltaRMax: 350
+sigmaScattering: 5
+
+# etaBinNeighborsBottom / etaBinNeighborsTop are length-N arrays
+# where N = floor((etaMax - etaMin) / deltaEtaMax). Each entry is a
+# [lo, hi] pair giving the window of bins searched per eta slice.
+# At the values above, N = 32.
+etaBinNeighborsBottom: [
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+]
+etaBinNeighborsTop: [
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+  [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1], [-1, 1],
+]

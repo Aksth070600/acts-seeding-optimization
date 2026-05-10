@@ -1,0 +1,6 @@
+# Confirmation stage event count. The run_confirmation.py runner
+# reruns the top candidates from run_grid.py at this event count,
+# producing the high-statistics measurements that pick_winners.py
+# applies the selection rules to.
+
+events: 50

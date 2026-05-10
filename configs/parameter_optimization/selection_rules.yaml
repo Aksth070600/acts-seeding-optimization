@@ -1,0 +1,25 @@
+# Selection rules for the parameter-optimisation pipeline.
+
+tolerance_pp: 0.1
+best_tolerance_pp: 0.0
+fastest_efficiency_floor: 0.95
+
+# Events=5 → events=50 bias correction, applied at the propose stage
+# (run_confirmation.py: events=5 grid measurements → top-K candidates
+# fed to events=50 reruns). 
+# At the propose stage, the eff thresholds for the "best" and
+# "fastest" rules are tightened by this amount. The strict events=50
+# rules in pick_winners are unchanged.
+events5_eff_bias_pp: 0.7
+
+baseline:
+  source: raw-data/Results/AlgorithmOptimizations/ParameterOptimization/Baseline
+  description: Cylindrical-grid baseline at runner defaults
+
+rules:
+  max_efficiency:
+    description: Highest efficiency, no constraints. Tiebreak — minimum time.
+  best:
+    description: Lowest time subject to strictly-better-than the Cylindrical baseline on every metric (Δeff ≥ 0, Δfake ≤ 0, Δdup ≤ 0). Tiebreak — maximum efficiency.
+  fastest:
+    description: Lowest time subject to an absolute efficiency floor only (eff ≥ floor). No constraints on fake or duplicate rate. Tiebreak — maximum efficiency.

@@ -1,0 +1,5 @@
+parameter: DeltaRMax
+events: 5
+values: [100, 200, 270, 350, 500, 750]
+notes: |
+  Anchor value is 350 (runner default). 

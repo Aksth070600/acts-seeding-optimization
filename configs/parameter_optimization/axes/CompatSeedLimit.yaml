@@ -1,0 +1,5 @@
+parameter: CompatSeedLimit
+events: 5
+values: [1, 2, 3, 4, 5]
+notes: |
+  Anchor value is 2 (runner default).

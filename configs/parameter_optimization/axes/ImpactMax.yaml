@@ -1,0 +1,5 @@
+parameter: ImpactMax
+events: 5
+values: [0.5, 1.0, 3.0, 5.0, 10.0, 20.0]
+notes: |
+  Anchor value is 20 (runner default). 

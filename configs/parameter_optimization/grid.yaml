@@ -1,0 +1,15 @@
+# Joint-search grid intervals.
+# Total cells = 7 × 1 × 3 × 1 × 3 × 4 = 252.
+
+events: 5
+
+deltaEtaMax: [0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70]
+phiBinDeflectionCoverage: [8]
+etaBinNeighborsBottom:
+  - [-1, 1]
+  - [-2, 2]
+  - [-3, 3]
+etaBinNeighborsTop:
+  - [-1, 1]
+maxSeedsPerSpM: [1, 2, 4]
+impactMax: [0.5, 1.0, 3.0, 10.0]

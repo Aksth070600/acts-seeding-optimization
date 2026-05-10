@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: Performance Optimization of the ACTS Track Seeding Algorithm
+message: >-
+  If you use this repository, please cite both the master's thesis and
+  this repository as listed below.
+type: software
+authors:
+  - family-names: Aksdal
+    given-names: Thomas
+    affiliation: University of Oslo
+    email: thomaaks@uio.no
+license: BSD-3-Clause
+year: 2026
+repository-code: https://github.com/thomaaks/acts-seeding-optimization
+preferred-citation:
+  type: thesis
+  authors:
+    - family-names: Aksdal
+      given-names: Thomas
+      affiliation: University of Oslo
+  title: >-
+    Optimization of the Computing Performance of the Inner Detector
+    Track Seeding Algorithm Used by ATLAS for High Luminosity LHC Data
+  thesis-type: Master's Thesis
+  institution:
+    name: University of Oslo
+  year: 2026
+  month: 5

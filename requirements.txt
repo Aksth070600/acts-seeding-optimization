@@ -1,0 +1,11 @@
+# Python dependencies for data-gen / figure-gen / pipeline scripts.
+
+numpy>=1.23
+pandas>=1.5
+matplotlib>=3.5
+scipy>=1.9
+PyYAML>=6.0
+uproot>=5.0
+
+mplhep>=0.3
+boost_histogram>=1.3
