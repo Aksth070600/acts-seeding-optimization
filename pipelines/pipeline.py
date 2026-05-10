@@ -21,7 +21,12 @@ def run_files(base: str, stem: str, ext: str, n: int | None = None) -> list[str]
         n = _read_runs_from_config()
     if n == 1:
         return [f"{base}/{stem}{ext}"]
-    return [f"{base}/{stem}_run{i}{ext}" for i in range(1, n + 1)]
+    suffixed = [f"{base}/{stem}_run{i}{ext}" for i in range(1, n + 1)]
+    if not any((ROOT_DIR / p).exists() for p in suffixed):
+        bare = f"{base}/{stem}{ext}"
+        if (ROOT_DIR / bare).exists():
+            return [bare]
+    return suffixed
 
 # Shared GNN4ITk Athena dump consumed by methods/baseline/detailed/datasets.
 GNN4ITK_DATASET_PATH = Path(
