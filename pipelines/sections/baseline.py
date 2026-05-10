@@ -60,33 +60,33 @@ p.add("Generating Scaling figures", "figure-gen/Results/Baseline/Scaling.py",
       requires=_METHODS_S2)
 
 _GPERF = "raw-data/Results/Baseline/Gperftools"
-_gperf_outputs = []
+_gperf_data = []
 for stem in ("PixelSeeding", "PixelSeeding2", "StripSeeding", "StripSeeding2"):
-    _gperf_outputs += run_files(_GPERF, stem, ".prof")
-p.add(
-    "Generating Gperftools data",
-    "data-gen/Results/Baseline/gperftools.py",
-    output=_gperf_outputs,
-)
-p.add("Generating Gperftools figures (Baseline)", "figure-gen/Results/Baseline/Gperftools.py",
-      output=[
-          "figures/Results/Baseline/Gperftools/Pixel_comparison.tex",
-          "figures/Results/Baseline/Gperftools/Strip_comparison.tex",
-      ])
+    _gperf_data += run_files(_GPERF, stem, ".prof")
+_gperf_figs = [
+    "figures/Results/Baseline/Gperftools/Pixel_comparison.tex",
+    "figures/Results/Baseline/Gperftools/Strip_comparison.tex",
+    "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Pixel_H1_createDoubletsImpl_annotation.txt",
+    "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Strip_H1_createDoubletsImpl_annotation.txt",
+    "figures/Results/Detailed/Gperftools/Pixel_Seeding2_top20.tex",
+    "figures/Results/Detailed/Gperftools/Strip_Seeding2_top20.tex",
+    "figures/Results/Detailed/Gperftools/Pixel_Seeding2_flamegraph.svg",
+    "figures/Results/Detailed/Gperftools/Strip_Seeding2_flamegraph.svg",
+]
+_gperf_all = _gperf_data + _gperf_figs
+
+p.add("Generating Gperftools data",
+      "data-gen/Results/Baseline/gperftools.py",
+      output=_gperf_all)
+p.add("Generating Gperftools figures (Baseline)",
+      "figure-gen/Results/Baseline/Gperftools.py",
+      output=_gperf_all)
 p.add("Generating Gperftools hotspot annotations (Detailed)",
       "figure-gen/Results/Detailed/GperftoolsHotspots.py",
-      output=[
-          "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Pixel_H1_createDoubletsImpl_annotation.txt",
-          "figures/Results/Detailed/Gperftools/Hotspots/Annotations/Strip_H1_createDoubletsImpl_annotation.txt",
-      ])
+      output=_gperf_all)
 p.add("Generating Gperftools top-20 + portrait flamegraphs (Detailed)",
       "figure-gen/Results/Detailed/Gperftools.py",
-      output=[
-          "figures/Results/Detailed/Gperftools/Pixel_Seeding2_top20.tex",
-          "figures/Results/Detailed/Gperftools/Strip_Seeding2_top20.tex",
-          "figures/Results/Detailed/Gperftools/Pixel_Seeding2_flamegraph.svg",
-          "figures/Results/Detailed/Gperftools/Strip_Seeding2_flamegraph.svg",
-      ])
+      output=_gperf_all)
 
 if __name__ == "__main__":
     p.run()

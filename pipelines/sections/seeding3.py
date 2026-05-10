@@ -40,8 +40,7 @@ p.add("Generating Scaling figure", "figure-gen/Results/Seeding3/Scaling.py")
 _GPERF3     = "raw-data/Results/Seeding3/Gperftools"
 _GPERF3_FIG = "figures/Results/Seeding3/Gperftools"
 
-p.add("Generating Gperftools data + reports (S1+S2)",
-      "data-gen/Results/Seeding3/gperftools.py", output=[
+_gperf3_s12 = [
     *run_files(_GPERF3, "GperftoolsSeeding",  ".prof"),
     *run_files(_GPERF3, "GperftoolsSeeding2", ".prof"),
     f"{_GPERF3}/Seeding_report.txt",
@@ -50,21 +49,24 @@ p.add("Generating Gperftools data + reports (S1+S2)",
     f"{_GPERF3_FIG}/Seeding2_flamegraph.svg",
     f"{_GPERF3_FIG}/Seeding_callgraph.pdf",
     f"{_GPERF3_FIG}/Seeding2_callgraph.pdf",
-])
+    f"{_GPERF3_FIG}/Seeding_vs_Seeding2_comparison.tex",
+]
+p.add("Generating Gperftools data + reports (S1+S2)",
+      "data-gen/Results/Seeding3/gperftools.py", output=_gperf3_s12)
 p.add("Generating Gperftools comparison table (S1+S2)",
-      "figure-gen/Results/Seeding3/Gperftools.py",
-      output=[f"{_GPERF3_FIG}/Seeding_vs_Seeding2_comparison.tex"])
+      "figure-gen/Results/Seeding3/Gperftools.py", output=_gperf3_s12)
 
-p.add("Generating Gperftools data + reports (S3)",
-      "data-gen/Results/Seeding3/gperftoolsSeeding3.py", output=[
+_gperf3_s3 = [
     *run_files(_GPERF3, "GperftoolsSeeding3", ".prof"),
     f"{_GPERF3}/Seeding3_report.txt",
     f"{_GPERF3_FIG}/Seeding3_flamegraph.svg",
     f"{_GPERF3_FIG}/Seeding3_callgraph.pdf",
-])
+    f"{_GPERF3_FIG}/Seeding2_vs_Seeding3_comparison.tex",
+]
+p.add("Generating Gperftools data + reports (S3)",
+      "data-gen/Results/Seeding3/gperftoolsSeeding3.py", output=_gperf3_s3)
 p.add("Generating Gperftools comparison table (S3)",
-      "figure-gen/Results/Seeding3/Gperftools3.py",
-      output=[f"{_GPERF3_FIG}/Seeding2_vs_Seeding3_comparison.tex"])
+      "figure-gen/Results/Seeding3/Gperftools3.py", output=_gperf3_s3)
 
 if __name__ == "__main__":
     p.run()
