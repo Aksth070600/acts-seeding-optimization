@@ -26,7 +26,6 @@ OUTPUT_FILE = SAVE_DIR / "Seeding3PerformanceTable.tex"
 
 def load_run(method: str, run: int) -> pd.DataFrame:
     path = RAW_DIR / f"RealCPUTime{method}_run{run}.csv"
-    # data-gen may force Runs=1 (bare name) even when global runs > 1.
     if not path.exists():
         path = RAW_DIR / f"RealCPUTime{method}.csv"
     df = pd.read_csv(path)

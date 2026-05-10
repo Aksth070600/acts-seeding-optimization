@@ -31,9 +31,6 @@ STRIP_WORKLOAD_FILE = WORKLOAD_DIR / "StripWorkload.csv"
 OUTPUT_FILE = SAVE_DIR / "WarmUp_RunningMean.pdf"
 
 def load_times(prefix):
-    # Methods/Workload.py forces Runs=1, so it writes the bare CSV. Detect
-    # what's actually on disk: prefer _runN if present, else use the bare
-    # file as a single run.
     suffixed = sorted(TIMING_DIR.glob(f"{prefix}_run*.csv"))
     if suffixed:
         paths = [(int(p.stem.rsplit("_run", 1)[-1]), p) for p in suffixed]

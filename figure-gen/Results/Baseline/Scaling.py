@@ -195,8 +195,6 @@ class TimingAnalyzer:
             n_runs = _default_runs()
 
         def _resolve(directory, stem):
-            # Prefer _runN files if present; fall back to the bare CSV
-            # written by data-gen scripts that hardcode Runs=1.
             suffixed = sorted(directory.glob(f"{stem}_run*.csv"))
             if suffixed:
                 return suffixed

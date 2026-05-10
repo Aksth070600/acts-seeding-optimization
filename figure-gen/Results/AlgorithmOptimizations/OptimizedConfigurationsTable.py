@@ -52,7 +52,6 @@ def load_timing(name_glob):
     frames = []
     for r in range(1, RUNS + 1):
         path = name_glob(r)
-        # data-gen may force Runs=1 (bare name) even when global runs > 1.
         if not path.exists():
             unsuffixed = path.with_name(path.name.replace(f"_run{r}", ""))
             if unsuffixed.exists():

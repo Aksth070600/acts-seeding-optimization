@@ -55,11 +55,6 @@ mkdir -p "$ACTS_DIR"
 cd "$ACTS_DIR"
 mkdir -p source build
 
-# git-lfs has to be installed BEFORE any git clone / submodule update
-# so the smudge filter expands LFS pointers as files are checked out.
-# OpenDataDetector ships its material maps via LFS — without this the
-# .root files get written as 133-byte pointer stubs and ACTS crashes
-# at runtime trying to read them.
 if [[ -x "$GIT_LFS_PREFIX/git-lfs" ]]; then
   export PATH="$GIT_LFS_PREFIX:$PATH"
   echo "git-lfs already at $GIT_LFS_PREFIX: $(git-lfs --version 2>&1 | head -n1)"
@@ -89,8 +84,6 @@ else
   echo "git-lfs installed: $(git-lfs --version 2>&1 | head -n1)"
 fi
 
-# Register the LFS filters globally so every subsequent clone/submodule
-# update auto-expands pointers. --skip-repo because we're not in a repo yet.
 git lfs install --skip-repo >/dev/null
 echo "git-lfs filters registered."
 
@@ -117,9 +110,6 @@ echo "ACTS version $ACTS_VERSION was successfully checked out."
 git submodule update --init --recursive
 echo "ACTS submodules were successfully updated."
 
-# Belt-and-braces: an existing checkout from before the git-lfs reorder
-# may still hold pointer stubs for the ODD material maps. Force-pull LFS
-# inside every submodule so any stale pointers get expanded to real files.
 git submodule foreach --recursive 'git lfs pull || true'
 echo "git-lfs content pulled across submodules."
 

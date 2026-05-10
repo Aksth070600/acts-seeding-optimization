@@ -46,7 +46,6 @@ TIMER_NAME = "Seeding"
 
 def load_global_run(geom: str, variant: str, run: int) -> pd.DataFrame:
     path = variant_dir(variant) / f"{geom}SeedingGlobalTime_run{run}.csv"
-    # data-gen may force Runs=1 (bare name) even when global runs > 1.
     if not path.exists():
         path = variant_dir(variant) / f"{geom}SeedingGlobalTime.csv"
     df = pd.read_csv(path)
@@ -82,7 +81,6 @@ def load_local_run(
     name_in_csv: str,
 ) -> pd.DataFrame:
     path = variant_dir(variant) / f"{geom}Seeding{csv_tag}_run{run}.csv"
-    # data-gen may force Runs=1 (bare name) even when global runs > 1.
     if not path.exists():
         path = variant_dir(variant) / f"{geom}Seeding{csv_tag}.csv"
     df = pd.read_csv(path)
