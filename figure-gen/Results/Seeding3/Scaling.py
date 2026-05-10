@@ -172,18 +172,17 @@ class TimingAnalyzer:
             from workflow import default_runs as _default_runs
             n_runs = _default_runs()
 
-        def _path(stem, i):
-            suffixed = raw_dir / f"{stem}_run{i}.csv"
-            if not suffixed.exists() and n_runs == 1:
-                fallback = raw_dir / f"{stem}.csv"
-                if fallback.exists():
-                    return fallback
-            return suffixed
+        def _resolve(stem):
+            # Prefer _runN files; fall back to bare CSV when data-gen
+            # forced Runs=1 even though global runs > 1.
+            suffixed = sorted(raw_dir.glob(f"{stem}_run*.csv"))
+            if suffixed:
+                return suffixed
+            bare = raw_dir / f"{stem}.csv"
+            return [bare] if bare.exists() else [raw_dir / f"{stem}_run1.csv"]
 
         def run_files(method):
-            timing   = [_path(f"{method}Timing",   i) for i in range(1, n_runs + 1)]
-            workload = [_path(f"{method}Workload", i) for i in range(1, n_runs + 1)]
-            return timing, workload
+            return (_resolve(f"{method}Timing"), _resolve(f"{method}Workload"))
 
         print("Reading Seeding...")
         data_seeding  = self.read_timing_data(*run_files("Seeding"))

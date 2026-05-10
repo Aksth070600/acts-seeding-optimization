@@ -85,7 +85,8 @@ def load_detector_runs(detector: str) -> list[dict[str, dict[str, float]]]:
     runs: list[dict] = []
     for i in range(1, N_RUNS + 1):
         path = RAW_DIR / f"{detector}Seeding2_run{i}.csv"
-        if not path.exists() and N_RUNS == 1:
+        # data-gen may force Runs=1 (bare name) even when global runs > 1.
+        if not path.exists():
             path = RAW_DIR / f"{detector}Seeding2.csv"
         if not path.exists():
             print(f"  WARNING: {path} not found – skipping run {i}.")

@@ -194,24 +194,22 @@ class TimingAnalyzer:
             from workflow import default_runs as _default_runs
             n_runs = _default_runs()
 
-        def _path(directory, stem, i):
-            # Workflow drops the _runN suffix when only one run was emitted.
-            suffixed = directory / f"{stem}_run{i}.csv"
-            if not suffixed.exists() and n_runs == 1:
-                fallback = directory / f"{stem}.csv"
-                if fallback.exists():
-                    return fallback
-            return suffixed
+        def _resolve(directory, stem):
+            # Prefer _runN files if present; fall back to the bare CSV
+            # written by data-gen scripts that hardcode Runs=1.
+            suffixed = sorted(directory.glob(f"{stem}_run*.csv"))
+            if suffixed:
+                return suffixed
+            bare = directory / f"{stem}.csv"
+            return [bare] if bare.exists() else [directory / f"{stem}_run1.csv"]
 
         def s1_files(detector):
-            timing   = [_path(raw_dir, f"{detector}ScalingTiming",   i) for i in range(1, n_runs + 1)]
-            workload = [_path(raw_dir, f"{detector}ScalingWorkload", i) for i in range(1, n_runs + 1)]
-            return timing, workload
+            return (_resolve(raw_dir, f"{detector}ScalingTiming"),
+                    _resolve(raw_dir, f"{detector}ScalingWorkload"))
 
         def s2_files(detector):
-            timing   = [_path(methods_dir, f"{detector}Timing",   i) for i in range(1, n_runs + 1)]
-            workload = [_path(methods_dir, f"{detector}Workload", i) for i in range(1, n_runs + 1)]
-            return timing, workload
+            return (_resolve(methods_dir, f"{detector}Timing"),
+                    _resolve(methods_dir, f"{detector}Workload"))
 
         print("Reading Pixel Seeding...")
         pixel_seeding  = self.read_timing_data(*s1_files("Pixel"))
