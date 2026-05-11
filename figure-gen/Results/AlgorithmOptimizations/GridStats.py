@@ -177,7 +177,6 @@ def build_tabular(cyl_ev: dict, sph_ev: dict) -> str:
         _row_int("Occupied bins",              c["populated_bins"],      s["populated_bins"]),
         _row_f2 (r"Empty bins [\%]",           c_empty,                   s_empty),
         _row_f2 ("Mean SPs per occupied bin",  c["mean_sps_per_pop_bin"], s["mean_sps_per_pop_bin"]),
-        _row_int("Total seeds",                c["seeds_per_event"],     s["seeds_per_event"]),
     ]
 
     lines = [
