@@ -35,7 +35,6 @@ workflow.run(
 
 workflow.copy_required_dirs()
 workflow.copy_dir("Seeding2/globalTiming")
-workflow.copy_dir("Seeding/globalTiming")
 workflow.build_environment()
 
 workflow.run(
@@ -56,28 +55,6 @@ workflow.run(
     ],
     LogFileNames=[
         "Seeding2Scaling",
-    ],
-    PrepareEnvironment=False,
-)
-
-workflow.run(
-    RunnerDir=[],
-    PythonRunners=[
-        "oddData.py",
-    ],
-    DataDir="Results/Seeding3/Scaling",
-    PythonRunnerArgs=[
-        "--version",
-        "Default",
-        "--logging-level",
-        "2",
-    ],
-    Parsers=[
-        ("TimerParser.py", "SeedingTiming.csv", 0),
-        ("WorkloadParser.py", "SeedingWorkload.csv", 0),
-    ],
-    LogFileNames=[
-        "SeedingScaling",
     ],
     PrepareEnvironment=False,
 )

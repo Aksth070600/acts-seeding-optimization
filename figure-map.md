@@ -82,13 +82,12 @@ the SphericalGridTriplet C++ defaults in `configs/spherical_defaults.yaml`.
 | Figure B.13 | etaBinNeighborsTop sweep | `figure-gen/Results/AlgorithmOptimizations/ParameterOptimization/EtaBinNeighborsTop.py` |
 | Figure B.17 | maxSeedsPerSpM sweep | `figure-gen/Results/AlgorithmOptimizations/ParameterOptimization/MaxSeedsPerSpM.py` |
 
-## Three-way comparison — S1 vs S2 vs S3 (Spherical)
+## Spherical Seeding3 vs GridTriplet — S2 vs S3
 
 | Thesis ref | What it shows | Script |
 | --- | --- | --- |
-| Table 6.26 | Real-CPU-time, three-way | `figure-gen/Results/Seeding3/RealCPUTime.py` |
-| Table 6.27 | Workload counts, three-way | `figure-gen/Results/Seeding3/Workload.py` |
-| Figure 6.6 | Per-stage timing waterfall, three-way | `figure-gen/Results/Seeding3/Waterfall.py` |
-| Figure 6.7 + Table 6.28 | Time per event vs spacepoints, three-way | `figure-gen/Results/Seeding3/Scaling.py` |
-| Figures B.19, B.20, B.22, B.23 | gperftools comparison (S1 + S2) | `figure-gen/Results/Seeding3/Gperftools.py` |
-| Figures B.21, B.24 + Table B.1 | gperftools comparison (S3 alone) | `figure-gen/Results/Seeding3/Gperftools3.py` |
+| Table 6.26 | Real-CPU-time, S2 vs S3 | `figure-gen/Results/Seeding3/RealCPUTime.py` |
+| Table 6.27 | Workload counts, S2 vs S3 | `figure-gen/Results/Seeding3/Workload.py` |
+| Figure 6.6 | Per-stage timing waterfall, S2 vs S3 | `figure-gen/Results/Seeding3/Waterfall.py` |
+| Figure 6.7 + Table 6.28 | Time per event vs spacepoints, S2 vs S3 | `figure-gen/Results/Seeding3/Scaling.py` |
+| Figures B.21, B.24 + Table B.1 | gperftools comparison (S2 vs S3) | `figure-gen/Results/Seeding3/Gperftools3.py` |

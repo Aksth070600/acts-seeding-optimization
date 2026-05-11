@@ -33,7 +33,6 @@ workflow.run(
 
 workflow.copy_required_dirs()
 workflow.copy_dir("Seeding2/StageTiming")
-workflow.copy_dir("Seeding/StageTiming") 
 workflow.build_environment()
 
 workflow.run(
@@ -51,26 +50,6 @@ workflow.run(
     ],
     LogFileNames=[
         "WaterfallSeeding2",
-    ],
-    PrepareEnvironment=False,
-    Runs=1,
-)
-
-workflow.run(
-    RunnerDir=[],
-    PythonRunners=[
-        "oddData.py",
-    ],
-    DataDir="Results/Seeding3/Waterfall",
-    PythonRunnerArgs=[
-        "--version",
-        "Default",
-    ],
-    Parsers=[
-        ("TimerParser.py", "WaterfallSeeding.csv", 0),
-    ],
-    LogFileNames=[
-        "WaterfallSeeding",
     ],
     PrepareEnvironment=False,
     Runs=1,

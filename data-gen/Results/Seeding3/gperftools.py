@@ -15,7 +15,6 @@ PROF_DIR = Path("raw-data/Results/Seeding3/Gperftools")
 FIG_DIR  = Path("figures/Results/Seeding3/Gperftools")
 
 SHOW_FROM = {
-    "Seeding":  "SeedingAlgorithm",
     "Seeding2": "GridTripletSeedingAlgorithm",
 }
 
@@ -34,15 +33,6 @@ workflow = DataGenWorkflow()
 workflow.copy_required_dirs()
 workflow.build_environment()
 
-workflow.run(
-    RunnerDir=[],
-    PythonRunners=["oddData.py"],
-    DataDir="Results/Seeding3/Gperftools",
-    PythonRunnerArgs=["--version", "Default"],
-    LogFileNames=["GperftoolsSeeding"],
-    Profiler="gperftools",
-    PrepareEnvironment=False,
-)
 workflow.run(
     RunnerDir=[],
     PythonRunners=["oddData.py"],

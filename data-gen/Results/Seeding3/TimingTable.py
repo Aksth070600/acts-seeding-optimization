@@ -32,7 +32,6 @@ workflow.run(
 
 workflow.copy_required_dirs()
 workflow.copy_dir("Seeding2/globalTiming")
-workflow.copy_dir("Seeding/globalTiming") 
 workflow.build_environment()
 
 workflow.run(
@@ -50,25 +49,6 @@ workflow.run(
     ],
     LogFileNames=[
         "RealCPUTimeSeeding2",
-    ],
-    PrepareEnvironment=False,
-)
-
-workflow.run(
-    RunnerDir=[],
-    PythonRunners=[
-        "oddData.py",
-    ],
-    DataDir="Results/Seeding3/RealCPUTime",
-    PythonRunnerArgs=[
-        "--version",
-        "Default",
-    ],
-    Parsers=[
-        ("TimerParser.py", "RealCPUTimeSeeding.csv", 0),
-    ],
-    LogFileNames=[
-        "RealCPUTimeSeeding",
     ],
     PrepareEnvironment=False,
 )

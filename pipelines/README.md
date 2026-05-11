@@ -14,7 +14,7 @@ Driver scripts that sequence `data-gen/*.py` and `figure-gen/*.py` for each thes
 | `baseline.py` | GNN4Itk | `raw-data/Results/Baseline/`. CPU time, workload, waterfall, scaling, gperftools (S1+S2) |
 | `detailed.py` | GNN4Itk | `raw-data/Results/Detailed/`. Stage timing, callgrind, gperftools, heaptrack (S2 deep dive) |
 | `code_optimizations.py` | GNN4Itk + ODD | `raw-data/Results/CodeOptimizations/`. Timing on GNN4Itk, physics on ODD |
-| `seeding3.py` | ODD | `raw-data/Results/Seeding3/`. Three-way S1 / S2 / S3 comparison |
+| `seeding3.py` | ODD | `raw-data/Results/Seeding3/`. S2 vs S3 comparison |
 | `algorithm_optimizations.py` | ODD | `raw-data/Results/AlgorithmOptimizations/`. Timing, GridStats, physics validation, callgrind/heaptrack, OptimizedConfigurations summary |
 | `parameter_optimization.py` | ODD | `raw-data/Results/AlgorithmOptimizations/ParameterOptimization/`. Cyl baseline + five 1D parameter sweeps (`deltaEtaMax`, `phiBinDeflectionCoverage`, `etaBinNeighborsBottom`, `etaBinNeighborsTop`, `maxSeedsPerSpM`) anchored at the SphericalGridTriplet C++ defaults, plus the corresponding 1D-sweep figures. The full search pipeline (coarse / refined grids, picker, Confirmation) lives at `configs/parameter_optimization/` — see that folder's README for the funnel that picks the Best / Fastest operating points committed in `configs/seeding3_*.yaml` |
 

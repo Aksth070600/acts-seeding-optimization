@@ -22,11 +22,10 @@ RAW_DIR  = Path("raw-data/Results/Seeding3/Waterfall")
 SAVE_DIR = Path("figures/Results/Seeding3/Waterfall")
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
-METHODS = ["Seeding", "Seeding2", "Seeding3"]
+METHODS = ["Seeding2", "Seeding3"]
 
 COMPARISONS: list[tuple[str, str, str]] = [
     ("Seeding2", "Seeding3", "Seeding2 vs Seeding3 (this thesis)"),
-    ("Seeding",  "Seeding3", "Seeding vs Seeding3 (aggregate)"),
 ]
 
 STAGES = [
@@ -63,13 +62,6 @@ _COMMON_TIMERS = {
 }
 
 STAGE_TIMERS: dict[str, dict[str, list[str]]] = {
-    "Seeding": {
-        **_COMMON_TIMERS,
-        "SeedFiltering": [
-            "Seeding-createSeedsFromGroups-SeedFiltering",
-            "SeedFiltering",
-        ],
-    },
     "Seeding2": _COMMON_TIMERS,
     "Seeding3": _COMMON_TIMERS,
 }

@@ -55,26 +55,3 @@ workflow.run(
     Runs=1,
 )
 
-workflow.copy_required_dirs()
-workflow.copy_dir("Seeding/Workload")
-workflow.build_environment()
-
-workflow.run(
-    RunnerDir=[],
-    PythonRunners=[
-        "oddData.py",
-    ],
-    DataDir="Results/Seeding3/Workload",
-    PythonRunnerArgs=[
-        "--version",
-        "Default",
-    ],
-    Parsers=[
-        ("StatsParser.py", "WorkloadSeeding.csv", 0),
-    ],
-    LogFileNames=[
-        "Seeding3Workload",
-    ],
-    PrepareEnvironment=False,
-    Runs=1,
-)

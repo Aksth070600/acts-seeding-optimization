@@ -99,7 +99,7 @@ class TimingAnalyzer:
         output_file.write_text("\n".join(lines) + "\n")
         print(f"LaTeX table saved to {output_file}")
 
-    def create_scaling_plot(self, data_seeding, data_seeding2, data_seeding3,
+    def create_scaling_plot(self, data_seeding2, data_seeding3,
                             output_file='figures/Results/Seeding3/Scaling/ScalingComparison.pdf',
                             degree=1):
         output_path = Path(output_file)
@@ -108,12 +108,10 @@ class TimingAnalyzer:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         table_out = output_path.with_suffix('.tex')
 
-        color_seeding  = '#1f77b4'
         color_seeding2 = '#ff7f0e'
         color_seeding3 = '#2ca02c'
 
         methods = [
-            ("Seeding",  data_seeding,  color_seeding),
             ("Seeding2", data_seeding2, color_seeding2),
             ("Seeding3", data_seeding3, color_seeding3),
         ]
@@ -182,16 +180,13 @@ class TimingAnalyzer:
         def run_files(method):
             return (_resolve(f"{method}Timing"), _resolve(f"{method}Workload"))
 
-        print("Reading Seeding...")
-        data_seeding  = self.read_timing_data(*run_files("Seeding"))
-
         print("Reading Seeding2...")
         data_seeding2 = self.read_timing_data(*run_files("Seeding2"))
 
         print("Reading Seeding3...")
         data_seeding3 = self.read_timing_data(*run_files("Seeding3"))
 
-        self.create_scaling_plot(data_seeding, data_seeding2, data_seeding3,
+        self.create_scaling_plot(data_seeding2, data_seeding3,
                                  output_file, degree)
 
 

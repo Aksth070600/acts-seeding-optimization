@@ -11,9 +11,7 @@ p.add("Workload table", "figure-gen/Results/Seeding3/Workload.py",
 p.add("Waterfall figure",                "figure-gen/Results/Seeding3/Waterfall.py")
 p.add("Scaling figure",                  "figure-gen/Results/Seeding3/Scaling.py")
 
-p.add("Gperftools figures (S1+S2)",      "figure-gen/Results/Seeding3/Gperftools.py",
-      output=["figures/Results/Seeding3/Gperftools/Seeding_vs_Seeding2_comparison.tex"])
-p.add("Gperftools figures (S3)",         "figure-gen/Results/Seeding3/Gperftools3.py",
+p.add("Gperftools figures (S2 vs S3)",   "figure-gen/Results/Seeding3/Gperftools3.py",
       output=["figures/Results/Seeding3/Gperftools/Seeding2_vs_Seeding3_comparison.tex"])
 
 if __name__ == "__main__":

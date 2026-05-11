@@ -19,7 +19,7 @@ SAVE_DIR = Path("figures/Results/Seeding3/RealCPUTime")
 SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 RUNS = default_runs()
-METHODS = ["Seeding", "Seeding2", "Seeding3"]
+METHODS = ["Seeding2", "Seeding3"]
 TIMER_NAME = "Seeding"
 OUTPUT_FILE = SAVE_DIR / "Seeding3PerformanceTable.tex"
 
@@ -54,57 +54,42 @@ def subset(df_all: pd.DataFrame, method: str) -> pd.DataFrame:
 
 
 def build_row(df_all: pd.DataFrame) -> tuple:
-    df_s1 = subset(df_all, "Seeding")
     df_s2 = subset(df_all, "Seeding2")
     df_s3 = subset(df_all, "Seeding3")
 
-    s1_mean = summarize_event_mean_from_frame(
-        df_s1, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=1,
-    )
     s2_mean = summarize_event_mean_from_frame(
         df_s2, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=2,
     )
     s3_mean = summarize_event_mean_from_frame(
         df_s3, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=3,
     )
-    sp_s2s1 = bootstrap_geometric_mean_ratio_from_frames(
-        df_s1, df_s2, value_col="TIME_MS_PER_EVENT", seed=4,
-    )
-    sp_s3s1 = bootstrap_geometric_mean_ratio_from_frames(
-        df_s1, df_s3, value_col="TIME_MS_PER_EVENT", seed=5,
-    )
     sp_s3s2 = bootstrap_geometric_mean_ratio_from_frames(
         df_s2, df_s3, value_col="TIME_MS_PER_EVENT", seed=6,
     )
 
     return (
-        format_mean_pm(s1_mean, 1),
         format_mean_pm(s2_mean, 1),
         format_mean_pm(s3_mean, 1),
-        format_ratio_ci(sp_s2s1, 3),
-        format_ratio_ci(sp_s3s1, 3),
         format_ratio_ci(sp_s3s2, 3),
     )
 
 
 def build_latex_table(df_all: pd.DataFrame) -> str:
-    s1, s2, s3, sp_s2s1, sp_s3s1, sp_s3s2 = build_row(df_all)
+    s2, s3, sp_s3s2 = build_row(df_all)
 
     lines = [
         r"\renewcommand{\arraystretch}{1.4}",
-        r"\begin{tabular}{lrrr}",
+        r"\begin{tabular}{lrr}",
         r"\toprule",
         (
             r"\textbf{Configuration} & "
             r"\textbf{Time per event [ms]} & "
-            r"\textbf{Speedup vs.\ S1} & "
             r"\textbf{Speedup vs.\ S2} \\"
         ),
         r"\midrule",
-        rf"\texttt{{Seeding}}  (S1) & ${s1}$ & --- & --- \\",
+        rf"\texttt{{Seeding2}} (S2) & ${s2}$ & --- \\",
         r"\rowcolor{gray!15}",
-        rf"\texttt{{Seeding2}} (S2) & ${s2}$ & ${sp_s2s1}$ & --- \\",
-        rf"\texttt{{Seeding3}} (S3) & ${s3}$ & ${sp_s3s1}$ & ${sp_s3s2}$ \\",
+        rf"\texttt{{Seeding3}} (S3) & ${s3}$ & ${sp_s3s2}$ \\",
         r"\bottomrule",
         r"\end{tabular}",
         "",
