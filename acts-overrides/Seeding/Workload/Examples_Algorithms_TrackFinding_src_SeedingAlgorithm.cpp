@@ -195,6 +195,9 @@ ProcessCode SeedingAlgorithm::execute(const AlgorithmContext& ctx) const {
   STATS(sp_per_bin);
   STATS(seeds_per_group);
   STATS(total_seeds);
+  STATS(grid_phi_bins);
+  STATS(grid_z_bins);
+  STATS(grid_r_bins);
 
   std::size_t nSpacePoints = 0;
   for (const auto& isp : m_inputSpacePoints) {
@@ -236,10 +239,12 @@ ProcessCode SeedingAlgorithm::execute(const AlgorithmContext& ctx) const {
 
   float minRange = std::numeric_limits<float>::max();
   float maxRange = std::numeric_limits<float>::lowest();
+  std::size_t totalBins = 0;
   for (const auto& coll : grid) {
     const auto sz = coll.size();
     num_bins(1);
     sp_per_bin(static_cast<std::int64_t>(sz));
+    ++totalBins;
     if (sz == 0) {
       continue;
     }
@@ -247,6 +252,19 @@ ProcessCode SeedingAlgorithm::execute(const AlgorithmContext& ctx) const {
     minRange = std::min(coll.front()->radius(), minRange);
     maxRange = std::max(coll.back()->radius(), maxRange);
   }
+
+  const std::size_t nZ = m_cfg.gridConfig.zBinEdges.empty()
+      ? static_cast<std::size_t>(std::max(1.f, std::floor(
+            (m_cfg.gridConfig.zMax - m_cfg.gridConfig.zMin) /
+            (m_cfg.gridConfig.cotThetaMax * m_cfg.gridConfig.deltaRMax))))
+      : (m_cfg.gridConfig.zBinEdges.size() - 1u);
+  const std::size_t nR = m_cfg.gridConfig.rBinEdges.empty()
+      ? 1u
+      : (m_cfg.gridConfig.rBinEdges.size() - 1u);
+  const std::size_t nPhi = totalBins / ((nZ + 2u) * (nR + 2u));
+  grid_phi_bins(static_cast<std::int64_t>(nPhi));
+  grid_z_bins(static_cast<std::int64_t>(nZ));
+  grid_r_bins(static_cast<std::int64_t>(nR));
 
   std::array<std::vector<std::size_t>, 3ul> navigation;
   navigation[1ul] = m_cfg.seedFinderConfig.zBinsCustomLooping;
