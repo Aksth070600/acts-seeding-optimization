@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import sys
 from pathlib import Path
 
@@ -6,6 +7,7 @@ sys.path.insert(0, "figure-gen")
 sys.path.insert(0, "data-gen")
 
 import pandas as pd
+
 from bootstrap_ci_helper import (
     summarize_event_mean_from_frame,
     bootstrap_geometric_mean_ratio_from_frames,
@@ -21,6 +23,7 @@ SAVE_DIR.mkdir(parents=True, exist_ok=True)
 RUNS = default_runs()
 METHODS = ["Seeding2", "Seeding3"]
 TIMER_NAME = "Seeding"
+
 OUTPUT_FILE = SAVE_DIR / "Seeding3PerformanceTable.tex"
 
 
@@ -53,47 +56,70 @@ def subset(df_all: pd.DataFrame, method: str) -> pd.DataFrame:
     return df_all[df_all["METHOD"] == method].copy()
 
 
-def build_row(df_all: pd.DataFrame) -> tuple:
-    df_s2 = subset(df_all, "Seeding2")
-    df_s3 = subset(df_all, "Seeding3")
+def throughput_frame(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    out["EVENTS_PER_SECOND"] = 1000.0 / out["TIME_MS_PER_EVENT"]
+    return out
 
-    s2_mean = summarize_event_mean_from_frame(
-        df_s2, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=2,
+
+def build_row(df_all: pd.DataFrame, seed_offset: int = 0) -> dict:
+    df_base = subset(df_all, "Seeding2")
+    df_opt  = subset(df_all, "Seeding3")
+
+    base_time = summarize_event_mean_from_frame(
+        df_base, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=seed_offset + 1,
     )
-    s3_mean = summarize_event_mean_from_frame(
-        df_s3, value_col="TIME_MS_PER_EVENT", scale=1.0, seed=3,
-    )
-    sp_s3s2 = bootstrap_geometric_mean_ratio_from_frames(
-        df_s2, df_s3, value_col="TIME_MS_PER_EVENT", seed=6,
+    opt_time = summarize_event_mean_from_frame(
+        df_opt,  value_col="TIME_MS_PER_EVENT", scale=1.0, seed=seed_offset + 2,
     )
 
-    return (
-        format_mean_pm(s2_mean, 1),
-        format_mean_pm(s3_mean, 1),
-        format_ratio_ci(sp_s3s2, 3),
+    base_tp = summarize_event_mean_from_frame(
+        throughput_frame(df_base), value_col="EVENTS_PER_SECOND", scale=1.0,
+        seed=seed_offset + 3,
     )
+    opt_tp = summarize_event_mean_from_frame(
+        throughput_frame(df_opt), value_col="EVENTS_PER_SECOND", scale=1.0,
+        seed=seed_offset + 4,
+    )
+
+    speedup = bootstrap_geometric_mean_ratio_from_frames(
+        df_base, df_opt, value_col="TIME_MS_PER_EVENT", seed=seed_offset + 5,
+    )
+
+    return {
+        "base_time": format_mean_pm(base_time, 1),
+        "opt_time":  format_mean_pm(opt_time, 1),
+        "base_tp":   format_mean_pm(base_tp, 2),
+        "opt_tp":    format_mean_pm(opt_tp, 2),
+        "speedup":   format_ratio_ci(speedup, 3),
+    }
 
 
 def build_latex_table(df_all: pd.DataFrame) -> str:
-    s2, s3, sp_s3s2 = build_row(df_all)
+    odd = build_row(df_all)
 
     lines = [
         r"\renewcommand{\arraystretch}{1.4}",
-        r"\begin{tabular}{lrr}",
+        r"\setlength{\tabcolsep}{5pt}",
+        r"\footnotesize",
+        r"\begin{tabular}{lrrrrr}",
         r"\toprule",
-        (
-            r"\textbf{Configuration} & "
-            r"\textbf{Time per event [ms]} & "
-            r"\textbf{Speedup vs.\ S2} \\"
-        ),
+        r"\textbf{Detector} & "
+        r"\multicolumn{2}{c}{\textbf{Time [ms/event]}} & "
+        r"\multicolumn{2}{c}{\textbf{Throughput [events/s]}} & "
+        r"\textbf{Speedup [95\% CI]} \\",
+        r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}",
+        r" & \texttt{Seeding2} & \texttt{Seeding3} & "
+        r"\texttt{Seeding2} & \texttt{Seeding3} & \\",
         r"\midrule",
-        rf"\texttt{{Seeding2}} (S2) & ${s2}$ & --- \\",
         r"\rowcolor{gray!15}",
-        rf"\texttt{{Seeding3}} (S3) & ${s3}$ & ${sp_s3s2}$ \\",
+        rf"ODD & ${odd['base_time']}$ & ${odd['opt_time']}$ & "
+        rf"${odd['base_tp']}$ & ${odd['opt_tp']}$ & ${odd['speedup']}$ \\",
         r"\bottomrule",
         r"\end{tabular}",
         "",
     ]
+
     return "\n".join(lines)
 
 
