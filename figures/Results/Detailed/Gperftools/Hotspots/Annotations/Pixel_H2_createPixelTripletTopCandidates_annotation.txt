@@ -1,0 +1,135 @@
+Total: 12.28s
+ROUTINE ======================== createPixelTripletTopCandidates in /storage/thomaaks/acts-seeding-optimization/ACTS/source/Core/src/Seeding2/TripletSeedFinder.cpp
+     9.30s     12.28s (flat, cum)   100% of Total
+         .          .     94:  template <typename TopDoublets>
+         .          .     95:  void createPixelTripletTopCandidates(
+         .          .     96:      const ConstSpacePointProxy2& spM,
+         .          .     97:      const DoubletsForMiddleSp::Proxy& bottomDoublet, TopDoublets& topDoublets,
+         .          .     98:      TripletTopCandidates& tripletTopCandidates) const {
+      20ms       20ms     99:    const float rM = spM.zr()[1];
+         .      220ms    100:    const float varianceZM = spM.varianceZ();
+         .      210ms    101:    const float varianceRM = spM.varianceR();
+         .          .    102:
+         .          .    103:    // Reserve enough space, in case current capacity is too little
+         .      440ms    104:    tripletTopCandidates.reserve(tripletTopCandidates.size() +
+         .          .    105:                                 topDoublets.size());
+         .          .    106:
+         .       90ms    107:    const float cotThetaB = bottomDoublet.cotTheta();
+         .      200ms    108:    const float erB = bottomDoublet.er();
+         .          .    109:    const float iDeltaRB = bottomDoublet.iDeltaR();
+         .      600ms    110:    const float Ub = bottomDoublet.u();
+         .       30ms    111:    const float Vb = bottomDoublet.v();
+         .          .    112:
+         .          .    113:    // 1+(cot^2(theta)) = 1/sin^2(theta)
+         .          .    114:    const float iSinTheta2 = 1 + cotThetaB * cotThetaB;
+         .          .    115:    const float sigmaSquaredPtDependent = iSinTheta2 * m_cfg.sigmapT2perRadius;
+         .          .    116:    // calculate max scattering for min momentum at the seed's theta angle
+         .          .    117:    // scaling scatteringAngle^2 by sin^2(theta) to convert pT^2 to p^2
+         .          .    118:    // accurate would be taking 1/atan(thetaBottom)-1/atan(thetaTop) <
+         .          .    119:    // scattering
+         .          .    120:    // but to avoid trig functions we approximate cot by scaling by
+         .          .    121:    // 1/sin^4(theta)
+         .          .    122:    // resolving with pT to p scaling --> only divide by sin^2(theta)
+         .          .    123:    // max approximation error for allowed scattering angles of 0.04 rad at
+         .          .    124:    // eta=infinity: ~8.5%
+     310ms      310ms    125:    const float scatteringInRegion2 = m_cfg.multipleScattering2 * iSinTheta2;
+         .          .    126:
+         .          .    127:    std::size_t topDoubletOffset = 0;
+     250ms      260ms    128:    for (auto [topDoublet, topDoubletIndex] :
+         .      440ms    129:         zip(topDoublets, std::ranges::iota_view<std::size_t, std::size_t>(
+         .          .    130:                              0, topDoublets.size()))) {
+         .      140ms    131:      const SpacePointIndex2 spT = topDoublet.spacePointIndex();
+         .          .    132:      const float cotThetaT = topDoublet.cotTheta();
+         .          .    133:
+         .          .    134:      // use geometric average
+     250ms      250ms    135:      const float cotThetaAvg2 = cotThetaB * cotThetaT;
+         .          .    136:
+         .          .    137:      // add errors of spB-spM and spM-spT pairs and add the correlation term
+         .          .    138:      // for errors on spM
+     470ms      850ms    139:      const float error2 = topDoublet.er() + erB +
+     470ms      470ms    140:                           2 * (cotThetaAvg2 * varianceRM + varianceZM) *
+     500ms      500ms    141:                               iDeltaRB * topDoublet.iDeltaR();
+         .          .    142:
+      60ms       60ms    143:      const float deltaCotTheta = cotThetaB - cotThetaT;
+      20ms       20ms    144:      const float deltaCotTheta2 = deltaCotTheta * deltaCotTheta;
+         .          .    145:
+         .          .    146:      // Apply a cut on the compatibility between the r-z slope of the two
+         .          .    147:      // seed segments. This is done by comparing the squared difference
+         .          .    148:      // between slopes, and comparing to the squared uncertainty in this
+         .          .    149:      // difference - we keep a seed if the difference is compatible within
+         .          .    150:      // the assumed uncertainties. The uncertainties get contribution from
+         .          .    151:      // the  space-point-related squared error (error2) and a scattering term
+         .          .    152:      // calculated assuming the minimum pt we expect to reconstruct
+         .          .    153:      // (scatteringInRegion2). This assumes gaussian error propagation which
+         .          .    154:      // allows just adding the two errors if they are uncorrelated (which is
+         .          .    155:      // fair for scattering and measurement uncertainties)
+     1.91s      1.91s    156:      if (deltaCotTheta2 > error2 + scatteringInRegion2) {
+         .          .    157:        if constexpr (sortedByCotTheta) {
+         .          .    158:          // skip top SPs based on cotTheta sorting when producing triplets
+         .          .    159:          // break if cotTheta from bottom SP < cotTheta from top SP because
+         .          .    160:          // the SP are sorted by cotTheta
+     810ms      810ms    161:          if (cotThetaB < cotThetaT) {
+         .          .    162:            break;
+         .          .    163:          }
+      50ms       50ms    164:          topDoubletOffset = topDoubletIndex + 1;
+         .          .    165:        }
+         .          .    166:        continue;
+         .          .    167:      }
+         .          .    168:
+     1.22s      1.24s    169:      const float dU = topDoublet.u() - Ub;
+         .          .    170:      // protects against division by 0
+     460ms      460ms    171:      if (dU == 0) {
+         .          .    172:        continue;
+         .          .    173:      }
+         .          .    174:      // A and B are evaluated as a function of the circumference parameters
+         .          .    175:      // x_0 and y_0
+         .          .    176:      const float A = (topDoublet.v() - Vb) / dU;
+     170ms      170ms    177:      const float S2 = 1 + A * A;
+     400ms      400ms    178:      const float B = Vb - A * Ub;
+         .          .    179:      const float B2 = B * B;
+         .          .    180:
+         .          .    181:      // sqrt(S2)/B = 2 * helixradius
+         .          .    182:      // calculated radius must not be smaller than minimum radius
+     440ms      440ms    183:      if (S2 < B2 * m_cfg.minHelixDiameter2) {
+         .          .    184:        continue;
+         .          .    185:      }
+         .          .    186:
+         .          .    187:      // refinement of the cut on the compatibility between the r-z slope of
+         .          .    188:      // the two seed segments using a scattering term scaled by the actual
+         .          .    189:      // measured pT (p2scatterSigma)
+      10ms       10ms    190:      const float iHelixDiameter2 = B2 / S2;
+         .          .    191:      // convert p(T) to p scaling by sin^2(theta) AND scale by 1/sin^4(theta)
+         .          .    192:      // from rad to deltaCotTheta
+     430ms      430ms    193:      const float p2scatterSigma = iHelixDiameter2 * sigmaSquaredPtDependent;
+         .          .    194:      // if deltaTheta larger than allowed scattering for calculated pT, skip
+     300ms      300ms    195:      if (deltaCotTheta2 > error2 + p2scatterSigma) {
+         .          .    196:        if constexpr (sortedByCotTheta) {
+     220ms      220ms    197:          if (cotThetaB < cotThetaT) {
+         .          .    198:            break;
+         .          .    199:          }
+         .          .    200:          topDoubletOffset = topDoubletIndex;
+         .          .    201:        }
+         .          .    202:        continue;
+         .          .    203:      }
+         .          .    204:
+         .          .    205:      // A and B allow calculation of impact params in U/V plane with linear
+         .          .    206:      // function
+         .          .    207:      // (in contrast to having to solve a quadratic function in x/y plane)
+     210ms      230ms    208:      const float im = std::abs((A - B * rM) * rM);
+      20ms       20ms    209:      if (im > m_cfg.impactMax) {
+         .          .    210:        continue;
+         .          .    211:      }
+         .          .    212:
+         .          .    213:      // inverse diameter is signed depending on if the curvature is
+         .          .    214:      // positive/negative in phi
+     200ms      250ms    215:      tripletTopCandidates.emplace_back(spT, B / std::sqrt(S2), im);
+         .          .    216:    }  // loop on tops
+         .          .    217:
+         .          .    218:    if constexpr (sortedByCotTheta) {
+         .          .    219:      // remove the top doublets that were skipped due to cotTheta sorting
+     100ms      230ms    220:      topDoublets = topDoublets.subrange(topDoubletOffset);
+         .          .    221:    }
+         .          .    222:  }
+         .          .    223:
+         .          .    224:  template <typename TopDoublets>
+         .          .    225:  void createStripTripletTopCandidates(

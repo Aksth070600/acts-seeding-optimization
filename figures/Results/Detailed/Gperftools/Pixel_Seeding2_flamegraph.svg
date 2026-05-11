@@ -1,0 +1,216 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="331" onload="init(evt)" viewBox="0 0 1200 331" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:13px; fill:rgb(0,0,0); }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:18px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<rect x="0.0" y="0" width="1200.0" height="331.0" fill="white"  />
+<g id="frames">
+<g >
+<title>std::vector::push_back (32 samples, 0.22%)</title><rect x="1180.5" y="200" width="2.6" height="31.0" fill="rgb(242,146,40)" rx="2" ry="2" />
+<text  x="1183.50" y="218.5" ></text>
+</g>
+<g >
+<title>createPixelTripletTopCandidates (935 samples, 6.32%)</title><rect x="156.7" y="104" width="74.6" height="31.0" fill="rgb(238,121,36)" rx="2" ry="2" />
+<text  x="159.74" y="122.5" >createP..</text>
+</g>
+<g >
+<title>std::__unguarded_partition (124 samples, 0.84%)</title><rect x="1026.3" y="72" width="9.9" height="31.0" fill="rgb(247,146,46)" rx="2" ry="2" />
+<text  x="1029.34" y="90.5" ></text>
+</g>
+<g >
+<title>std::vector::emplace_back (57 samples, 0.39%)</title><rect x="1142.7" y="136" width="4.5" height="31.0" fill="rgb(242,146,40)" rx="2" ry="2" />
+<text  x="1145.68" y="154.5" ></text>
+</g>
+<g >
+<title>ActsExamples::GridTripletSeedingAlgorithm::execute (14,611 samples, 98.80%)</title><rect x="17.5" y="232" width="1165.9" height="31.0" fill="rgb(240,164,38)" rx="2" ry="2" />
+<text  x="20.50" y="250.5" >ActsExamples::GridTripletSeedingAlgorithm::execute</text>
+</g>
+<g >
+<title>Acts::SpacePointProxy2::assignSourceLinks (76 samples, 0.51%)</title><rect x="11.4" y="232" width="6.1" height="31.0" fill="rgb(236,164,34)" rx="2" ry="2" />
+<text  x="14.44" y="250.5" ></text>
+</g>
+<g >
+<title>f64xsubf128 (135 samples, 0.91%)</title><rect x="1159.7" y="168" width="10.8" height="31.0" fill="rgb(237,150,35)" rx="2" ry="2" />
+<text  x="1162.68" y="186.5" ></text>
+</g>
+<g >
+<title>std::__introsort_loop (46 samples, 0.31%)</title><rect x="1173.1" y="200" width="3.7" height="31.0" fill="rgb(248,146,47)" rx="2" ry="2" />
+<text  x="1176.08" y="218.5" ></text>
+</g>
+<g >
+<title>Acts::SpacePointContainer2::createSpacePoint (48 samples, 0.32%)</title><rect x="55.1" y="200" width="3.8" height="31.0" fill="rgb(238,164,36)" rx="2" ry="2" />
+<text  x="58.08" y="218.5" ></text>
+</g>
+<g >
+<title>std::__sort (868 samples, 5.87%)</title><rect x="995.1" y="136" width="69.2" height="31.0" fill="rgb(238,146,36)" rx="2" ry="2" />
+<text  x="998.06" y="154.5" >std::__..</text>
+</g>
+<g >
+<title>std::__do_uninit_copy (51 samples, 0.34%)</title><rect x="13.3" y="200" width="4.0" height="31.0" fill="rgb(248,146,48)" rx="2" ry="2" />
+<text  x="16.27" y="218.5" ></text>
+</g>
+<g >
+<title>Acts::(anonymous (13,642 samples, 92.25%)</title><rect x="61.0" y="168" width="1088.5" height="31.0" fill="rgb(236,164,34)" rx="2" ry="2" />
+<text  x="63.99" y="186.5" >Acts::(anonymous</text>
+</g>
+<g >
+<title>std::__copy_move_backward::__copy_move_b (67 samples, 0.45%)</title><rect x="963.3" y="136" width="5.4" height="31.0" fill="rgb(229,146,27)" rx="2" ry="2" />
+<text  x="966.30" y="154.5" ></text>
+</g>
+<g >
+<title>std::__introsort_loop (120 samples, 0.81%)</title><rect x="1016.2" y="72" width="9.6" height="31.0" fill="rgb(248,146,47)" rx="2" ry="2" />
+<text  x="1019.21" y="90.5" ></text>
+</g>
+<g >
+<title>std::span::subspan (39 samples, 0.26%)</title><rect x="1136.6" y="136" width="3.1" height="31.0" fill="rgb(242,146,41)" rx="2" ry="2" />
+<text  x="1139.62" y="154.5" ></text>
+</g>
+<g >
+<title>Acts::detail::sp::ColumnHolder::emplace_back (29 samples, 0.20%)</title><rect x="55.6" y="168" width="2.3" height="31.0" fill="rgb(242,164,40)" rx="2" ry="2" />
+<text  x="58.56" y="186.5" ></text>
+</g>
+<g >
+<title>operator() (110 samples, 0.74%)</title><rect x="953.6" y="136" width="8.8" height="31.0" fill="rgb(241,195,40)" rx="2" ry="2" />
+<text  x="956.65" y="154.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::sortByCotTheta() (59 samples, 0.40%)</title><rect x="1009.7" y="72" width="4.7" height="31.0" fill="rgb(244,164,43)" rx="2" ry="2" />
+<text  x="1012.66" y="90.5" ></text>
+</g>
+<g >
+<title>std::vector::operator[] (62 samples, 0.42%)</title><rect x="245.8" y="104" width="4.9" height="31.0" fill="rgb(242,146,41)" rx="2" ry="2" />
+<text  x="248.79" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::Delegate::connect()::{lambda(void (134 samples, 0.91%)</title><rect x="980.1" y="104" width="10.7" height="31.0" fill="rgb(246,164,45)" rx="2" ry="2" />
+<text  x="983.06" y="122.5" ></text>
+</g>
+<g >
+<title>std::__unguarded_partition (283 samples, 1.91%)</title><rect x="1038.9" y="104" width="22.6" height="31.0" fill="rgb(247,146,46)" rx="2" ry="2" />
+<text  x="1041.87" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::sortByCotTheta (53 samples, 0.36%)</title><rect x="262.0" y="136" width="4.2" height="31.0" fill="rgb(232,164,30)" rx="2" ry="2" />
+<text  x="264.99" y="154.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::emplace_back (54 samples, 0.37%)</title><rect x="944.4" y="104" width="4.3" height="31.0" fill="rgb(242,164,40)" rx="2" ry="2" />
+<text  x="947.39" y="122.5" ></text>
+</g>
+<g >
+<title>all (14,788 samples, 100%)</title><rect x="10.0" y="264" width="1180.0" height="31.0" fill="rgb(255,230,55)" rx="2" ry="2" />
+<text  x="13.00" y="282.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::emplace_back (83 samples, 0.56%)</title><rect x="145.4" y="104" width="6.6" height="31.0" fill="rgb(242,164,40)" rx="2" ry="2" />
+<text  x="148.41" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::Axis::wrapBin (33 samples, 0.22%)</title><rect x="50.9" y="200" width="2.6" height="31.0" fill="rgb(244,164,43)" rx="2" ry="2" />
+<text  x="53.85" y="218.5" ></text>
+</g>
+<g >
+<title>std::__detail::__extent_storage::_M_extent (44 samples, 0.30%)</title><rect x="231.7" y="104" width="3.6" height="31.0" fill="rgb(241,146,39)" rx="2" ry="2" />
+<text  x="234.75" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::SpacePointContainer2::zip (30 samples, 0.20%)</title><rect x="268.5" y="136" width="2.3" height="31.0" fill="rgb(243,164,42)" rx="2" ry="2" />
+<text  x="271.45" y="154.5" ></text>
+</g>
+<g >
+<title>std::__unguarded_partition (44 samples, 0.30%)</title><rect x="1022.0" y="40" width="3.5" height="31.0" fill="rgb(247,146,46)" rx="2" ry="2" />
+<text  x="1025.03" y="58.5" ></text>
+</g>
+<g >
+<title>Acts::TripletSeeder::createSeedsFromGroups (13,711 samples, 92.72%)</title><rect x="58.9" y="200" width="1094.1" height="31.0" fill="rgb(237,164,36)" rx="2" ry="2" />
+<text  x="61.91" y="218.5" >Acts::TripletSeeder::createSeedsFromGroups</text>
+</g>
+<g >
+<title>std::__insertion_sort (85 samples, 0.57%)</title><rect x="969.4" y="136" width="6.8" height="31.0" fill="rgb(238,146,36)" rx="2" ry="2" />
+<text  x="972.37" y="154.5" ></text>
+</g>
+<g >
+<title>createDoubletsImpl (8,520 samples, 57.61%)</title><rect x="273.8" y="136" width="679.8" height="31.0" fill="rgb(238,121,36)" rx="2" ry="2" />
+<text  x="276.80" y="154.5" >createDoubletsImpl</text>
+</g>
+<g >
+<title>std::vector::emplace_back (37 samples, 0.25%)</title><rect x="948.7" y="104" width="3.0" height="31.0" fill="rgb(242,146,40)" rx="2" ry="2" />
+<text  x="951.70" y="122.5" ></text>
+</g>
+<g >
+<title>std::__unguarded_linear_insert (818 samples, 5.53%)</title><rect x="1065.4" y="136" width="65.2" height="31.0" fill="rgb(236,146,34)" rx="2" ry="2" />
+<text  x="1068.36" y="154.5" >std::_..</text>
+</g>
+<g >
+<title>std::vector::push_back (29 samples, 0.20%)</title><rect x="250.7" y="104" width="2.4" height="31.0" fill="rgb(242,146,40)" rx="2" ry="2" />
+<text  x="253.74" y="122.5" ></text>
+</g>
+<g >
+<title>itkFastTrackingCuts (36 samples, 0.24%)</title><rect x="990.8" y="104" width="2.8" height="31.0" fill="rgb(233,124,31)" rx="2" ry="2" />
+<text  x="993.75" y="122.5" ></text>
+</g>
+<g >
+<title>atan2f32x (147 samples, 0.99%)</title><rect x="1158.7" y="200" width="11.8" height="31.0" fill="rgb(246,140,45)" rx="2" ry="2" />
+<text  x="1161.72" y="218.5" ></text>
+</g>
+<g >
+<title>std::__introsort_loop (380 samples, 2.57%)</title><rect x="1007.0" y="104" width="30.3" height="31.0" fill="rgb(248,146,47)" rx="2" ry="2" />
+<text  x="1009.95" y="122.5" >s..</text>
+</g>
+<g >
+<title>Acts::(anonymous (2,367 samples, 16.01%)</title><rect x="67.3" y="136" width="188.9" height="31.0" fill="rgb(236,164,34)" rx="2" ry="2" />
+<text  x="70.29" y="154.5" >Acts::(anonymous</text>
+</g>
+<g >
+<title>std::swap (36 samples, 0.24%)</title><rect x="1061.5" y="104" width="2.8" height="31.0" fill="rgb(233,146,31)" rx="2" ry="2" />
+<text  x="1064.45" y="122.5" ></text>
+</g>
+<g >
+<title>std::__invoke_impl (219 samples, 1.48%)</title><rect x="976.2" y="136" width="17.4" height="31.0" fill="rgb(238,146,36)" rx="2" ry="2" />
+<text  x="979.15" y="154.5" ></text>
+</g>
+<g >
+<title>std::__introsort_loop (34 samples, 0.23%)</title><rect x="1018.7" y="40" width="2.7" height="31.0" fill="rgb(248,146,47)" rx="2" ry="2" />
+<text  x="1021.68" y="58.5" ></text>
+</g>
+<g >
+<title>Acts::(anonymous (75 samples, 0.51%)</title><rect x="117.8" y="104" width="6.0" height="31.0" fill="rgb(236,164,34)" rx="2" ry="2" />
+<text  x="120.80" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::BroadTripletSeedFilter::filterTripletTopCandidates (184 samples, 1.24%)</title><rect x="123.8" y="104" width="14.7" height="31.0" fill="rgb(238,164,36)" rx="2" ry="2" />
+<text  x="126.79" y="122.5" ></text>
+</g>
+<g >
+<title>std::vector::emplace_back (73 samples, 0.49%)</title><rect x="240.0" y="104" width="5.8" height="31.0" fill="rgb(242,146,40)" rx="2" ry="2" />
+<text  x="242.97" y="122.5" ></text>
+</g>
+<g >
+<title>std::span::operator[] (48 samples, 0.32%)</title><rect x="1132.8" y="136" width="3.8" height="31.0" fill="rgb(242,146,41)" rx="2" ry="2" />
+<text  x="1135.79" y="154.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::sortByCotTheta() (113 samples, 0.76%)</title><rect x="996.3" y="104" width="9.0" height="31.0" fill="rgb(244,164,43)" rx="2" ry="2" />
+<text  x="999.26" y="122.5" ></text>
+</g>
+<g >
+<title>Acts::BroadTripletSeedFilter::filterTripletsMiddleFixed (27 samples, 0.18%)</title><rect x="256.5" y="136" width="2.1" height="31.0" fill="rgb(252,164,52)" rx="2" ry="2" />
+<text  x="259.48" y="154.5" ></text>
+</g>
+<g >
+<title>Acts::DoubletsForMiddleSp::Proxy::u (60 samples, 0.41%)</title><rect x="140.4" y="104" width="4.8" height="31.0" fill="rgb(232,164,30)" rx="2" ry="2" />
+<text  x="143.38" y="122.5" ></text>
+</g>
+</g>
+</svg>

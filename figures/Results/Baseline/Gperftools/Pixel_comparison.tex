@@ -1,0 +1,29 @@
+\begin{tabular}{rlrr}
+\toprule
+\textbf{\#} & \textbf{Pixel Detector} & \textbf{Flat\,\%} & \textbf{Cum\,\%} \\
+\midrule
+\multicolumn{4}{l}{\textbf{Seeding}} \\
+\quad & \texttt{SeedFinder::getCompatibleDoublets} & 57.10 & 70.24 \\
+\quad & \texttt{SeedFinder::filterCandidates} & 7.95 & 24.46 \\
+\quad & \texttt{std::vector::operator[] (inline)} & 4.52 & 4.53 \\
+\quad & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 3.40 & 5.09 \\
+\quad & \texttt{std::\_\_invoke\_impl (inline)} & 2.74 & 4.41 \\
+\quad & \texttt{std::\_\_unguarded\_partition (inline)} & 2.48 & 5.87 \\
+\quad & \texttt{\_\_gnu\_cxx::\_\_normal\_iterator::operator-- (inline)} & 1.75 & 1.75 \\
+\quad & \texttt{SpacePointData::z (inline)} & 1.58 & 1.58 \\
+\quad & \texttt{\{lambda(float, float, float)\#1\}::operator() (inline)} & 1.53 & 1.53 \\
+\quad & \texttt{std::vector::emplace\_back (partial-inline)} & 1.17 & 2.17 \\
+\\[-0.5em]
+\multicolumn{4}{l}{\textbf{Seeding2}} \\
+\quad & \texttt{createDoubletsImpl (inline)} & 56.83 & 63.44 \\
+\quad & \texttt{createPixelTripletTopCandidates (inline)} & 6.29 & 8.30 \\
+\quad & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 5.53 & 5.53 \\
+\quad & \texttt{Impl::createDoublets (partial-inline)} & 3.96 & 66.34 \\
+\quad & \texttt{std::\_\_unguarded\_partition (inline)} & 3.17 & 4.80 \\
+\quad & \texttt{\{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta con}\ldots & 1.22 & 1.22 \\
+\quad & \texttt{std::vector::emplace\_back (inline)} & 1.22 & 1.44 \\
+\quad & \texttt{BroadTripletSeedFilter::filterTripletTopCandidates} & 1.17 & 1.66 \\
+\quad & \texttt{DoubletsForMiddleSp::emplace\_back} & 0.93 & 2.04 \\
+\quad & \texttt{f64xsubf128} & 0.91 & 0.91 \\
+\bottomrule
+\end{tabular}

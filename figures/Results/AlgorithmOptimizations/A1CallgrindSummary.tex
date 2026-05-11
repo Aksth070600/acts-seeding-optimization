@@ -1,0 +1,23 @@
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrr}
+    \toprule
+    \textbf{Metric} & \textbf{Cylindrical} & \textbf{Spherical} & \textbf{Spherical / Cylindrical} \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{4}{l}{\textbf{Computational work}} \\
+    Instructions (Ir) & $1.02\times10^{10}$ & $9.37\times10^{8}$ & $0.09\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{4}{l}{\textbf{Memory access behaviour}} \\
+    Data accesses $(\mathrm{Dr}+\mathrm{Dw})$ & $3.95\times10^{9}$ & $4.52\times10^{8}$ & $0.11\times$ \\
+    \rowcolor{gray!15}
+    LLC data misses $(\mathrm{DLmr}+\mathrm{DLmw})$ & $1.41\times10^{4}$ & $1.44\times10^{4}$ & ${\approx}1.0\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{4}{l}{\textbf{Instruction locality}} \\
+    Instruction-cache misses $(\mathrm{I1mr})$ & $9.7\times10^{3}$ & $6.31\times10^{4}$ & $6.50\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{4}{l}{\textbf{Control-flow efficiency}} \\
+    Branch mispredictions $(\mathrm{Bcm})$ & $9.16\times10^{7}$ & $8.96\times10^{6}$ & $0.10\times$ \\
+    \bottomrule
+\end{tabular}%
+}

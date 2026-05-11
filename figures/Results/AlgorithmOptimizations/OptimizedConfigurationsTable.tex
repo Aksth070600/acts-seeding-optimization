@@ -1,0 +1,29 @@
+\definecolor{bestcol}{gray}{0.92}
+\definecolor{deltagood}{rgb}{0.10, 0.50, 0.20}
+\definecolor{deltabad}{rgb}{0.65, 0.10, 0.10}
+\renewcommand{\arraystretch}{1.25}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l c c c >{\columncolor{bestcol}}c}
+    \toprule
+     & & \multicolumn{3}{c}{\textit{Spherical configurations}} \\
+    \cmidrule(lr){3-5}
+    \textbf{Quantity} & \textbf{Cylindrical} & \textbf{Max Efficiency} & \textbf{Fastest} & \textbf{Best} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Parameter overrides (vs.\ runner defaults)}} \\
+    $\Delta\eta_{\max}$ & -- & 0.7 & 0.4 & 0.3 \\
+    phiBinDeflectionCoverage & -- & 8 & 8 & 8 \\
+    etaBinNeighborsBottom & -- & $[-3, 3]\!\times\!11$ & $[-1, 1]\!\times\!20$ & $[-2, 2]\!\times\!26$ \\
+    etaBinNeighborsTop & -- & $[-1, 1]\!\times\!11$ & $[-1, 1]\!\times\!20$ & $[-1, 1]\!\times\!26$ \\
+    maxSeedsPerSpM & -- & 4 & 1 & 4 \\
+    impactMax & -- & 3 & 0.5 & 3 \\
+    \midrule
+    Efficiency & 97.3\% & \textbf{98.1\%}\,{\scriptsize\textcolor{deltagood}{(+0.8)}} & 95.2\%\,{\scriptsize\textcolor{deltabad}{(-2.1)}} & 97.5\%\,{\scriptsize\textcolor{deltagood}{(+0.2)}} \\
+    Fake ratio & 93.5\% & 90.7\%\,{\scriptsize\textcolor{deltagood}{(-2.8)}} & \textbf{33.0\%}\,{\scriptsize\textcolor{deltagood}{(-60.6)}} & 86.8\%\,{\scriptsize\textcolor{deltagood}{(-6.7)}} \\
+    Duplicate ratio & 94.2\% & 95.0\%\,{\scriptsize\textcolor{deltabad}{(+0.8)}} & \textbf{85.7\%}\,{\scriptsize\textcolor{deltagood}{(-8.6)}} & 90.5\%\,{\scriptsize\textcolor{deltagood}{(-3.8)}} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Wall-clock per event}} \\
+    Time [ms] & $607.0\,[577.3,\,637.4]$ & $69.8\,[67.0,\,72.6]$ & \textbf{$45.5\,[43.8,\,47.2]$} & $54.2\,[52.2,\,56.2]$ \\
+    Speedup vs.\ Cylindrical & -- & $8.66\,[8.58,\,8.73]$ & \textbf{$13.25\,[13.08,\,13.41]$} & $11.12\,[10.98,\,11.26]$ \\
+    \bottomrule
+\end{tabular}%
+}

@@ -1,0 +1,88 @@
+File: python3.9
+Type: cpu
+Active filters:
+   show_from=SeedingAlgorithm
+Showing nodes accounting for 45.94s, 93.45% of 49.16s total
+Dropped 138 nodes (cum <= 0.25s)
+      flat  flat%   sum%        cum   cum%
+    22.38s 45.52% 45.52%     28.25s 57.47%  Acts::SeedFinder::getCompatibleDoublets
+     7.45s 15.15% 60.68%     17.01s 34.60%  Acts::SeedFinder::filterCandidates
+     2.28s  4.64% 65.32%      3.32s  6.75%  std::__unguarded_linear_insert (inline)
+     1.97s  4.01% 69.32%      1.98s  4.03%  std::vector::operator[] (inline)
+     1.19s  2.42% 71.75%      1.64s  3.34%  std::__invoke_impl (inline)
+        1s  2.03% 73.78%      2.33s  4.74%  std::__unguarded_partition (inline)
+     0.84s  1.71% 75.49%      0.84s  1.71%  __gnu_cxx::__normal_iterator::operator-- (inline)
+     0.72s  1.46% 76.95%      0.72s  1.46%  Acts::SpacePointData::z (inline)
+     0.68s  1.38% 78.34%      0.68s  1.38%  Acts::SeedFinder::getCompatibleDoublets() const::{lambda(float, float, float)#1}::operator() (inline)
+     0.64s  1.30% 79.64%      0.64s  1.30%  Acts::LinCircle::LinCircle (inline)
+     0.64s  1.30% 80.94%      2.78s  5.66%  std::__insertion_sort (inline)
+     0.54s  1.10% 82.04%      1.34s  2.73%  std::vector::emplace_back (inline)
+     0.52s  1.06% 83.10%      0.56s  1.14%  __GI___libc_malloc
+     0.46s  0.94% 84.03%      0.46s  0.94%  __gnu_cxx::__normal_iterator::operator++ (inline)
+     0.46s  0.94% 84.97%      0.46s  0.94%  std::vector::size (inline)
+     0.41s  0.83% 85.80%      0.41s  0.83%  ActsExamples::SpacePointContainer::varianceR_impl (inline)
+     0.39s  0.79% 86.59%      0.39s  0.79%  _int_free
+     0.37s  0.75% 87.35%      2.14s  4.35%  Acts::SpacePointData::radius (inline)
+     0.31s  0.63% 87.98%      0.31s  0.63%  Acts::SpacePointData::varianceZ (inline)
+     0.27s  0.55% 88.53%      2.21s  4.50%  std::__unguarded_insertion_sort (inline)
+     0.25s  0.51% 89.04%      0.27s  0.55%  Acts::Axis::wrapBin (inline)
+     0.25s  0.51% 89.54%      0.25s  0.51%  Acts::SpacePointProxy::container (inline)
+     0.25s  0.51% 90.05%      0.25s  0.51%  atanf32
+     0.24s  0.49% 90.54%     46.28s 94.14%  Acts::SeedFinder::createSeedsForGroup
+     0.19s  0.39% 90.93%      0.37s  0.75%  std::__copy_move_backward::__copy_move_b (inline)
+     0.16s  0.33% 91.25%      2.80s  5.70%  std::__introsort_loop
+     0.15s  0.31% 91.56%      0.51s  1.04%  Acts::Axis::getBin (inline)
+     0.12s  0.24% 91.80%      0.51s  1.04%  __free
+     0.10s   0.2% 92.01%      0.39s  0.79%  Acts::SeedFilter::filterSeeds_1SpFixed (inline)
+     0.09s  0.18% 92.19%      0.29s  0.59%  Acts::SeedFilter::filterSeeds_2SpFixed
+     0.09s  0.18% 92.37%      0.34s  0.69%  __atan2f_finite
+     0.08s  0.16% 92.53%      0.44s   0.9%  std::__fill_a1 (inline)
+     0.07s  0.14% 92.68%      0.65s  1.32%  operator new
+     0.06s  0.12% 92.80%      0.39s  0.79%  std::vector::push_back (inline)
+     0.05s   0.1% 92.90%      7.86s 15.99%  std::__sort (inline)
+     0.04s 0.081% 92.98%      1.01s  2.05%  Acts::SpacePointContainer::initialize
+     0.04s 0.081% 93.06%     49.16s   100%  ActsExamples::SeedingAlgorithm::execute
+     0.04s 0.081% 93.14%      0.25s  0.51%  std::_Vector_base::~_Vector_base (inline)
+     0.03s 0.061% 93.21%      0.37s  0.75%  atan2f
+     0.02s 0.041% 93.25%      1.67s  3.40%  Acts::CylindricalSpacePointGridCreator::fillGrid (inline)
+     0.02s 0.041% 93.29%      0.64s  1.30%  std::_Vector_base::_M_create_storage (inline)
+     0.02s 0.041% 93.33%      0.67s  1.36%  std::__new_allocator::allocate (inline)
+     0.02s 0.041% 93.37%      0.66s  1.34%  std::construct_at (inline)
+     0.02s 0.041% 93.41%      0.40s  0.81%  std::vector::_M_default_initialize (inline)
+     0.01s  0.02% 93.43%      0.68s  1.38%  std::_Vector_base::_M_allocate (inline)
+     0.01s  0.02% 93.45%      0.45s  0.92%  std::__fill_n_a (inline)
+         0     0% 93.45%      0.53s  1.08%  Acts::Grid::globalBinFromPosition (inline)
+         0     0% 93.45%      0.51s  1.04%  Acts::Grid::localBinsFromPosition (inline)
+         0     0% 93.45%      1.01s  2.05%  Acts::SpacePointContainer::SpacePointContainer (inline)
+         0     0% 93.45%      2.14s  4.35%  Acts::SpacePointContainer::radius (inline)
+         0     0% 93.45%      0.31s  0.63%  Acts::SpacePointContainer::varianceZ (inline)
+         0     0% 93.45%      0.72s  1.46%  Acts::SpacePointContainer::z (inline)
+         0     0% 93.45%      2.39s  4.86%  Acts::SpacePointProxy::radius (inline)
+         0     0% 93.45%      0.31s  0.63%  Acts::SpacePointProxy::varianceZ (inline)
+         0     0% 93.45%      0.72s  1.46%  Acts::SpacePointProxy::z (inline)
+         0     0% 93.45%      0.51s  1.04%  Acts::detail::grid_helper::getLocalBinIndices (inline)
+         0     0% 93.45%      0.51s  1.04%  Acts::detail::grid_helper_impl::getLocalBinIndices (inline)
+         0     0% 93.45%      1.07s  2.18%  __gnu_cxx::__ops::_Iter_comp_iter::operator() (inline)
+         0     0% 93.45%      0.53s  1.08%  __gnu_cxx::__ops::_Val_comp_iter::operator() (inline)
+         0     0% 93.45%      0.65s  1.32%  std::_Vector_base::_Vector_base (inline)
+         0     0% 93.45%      0.37s  0.75%  std::__copy_move_backward_a (inline)
+         0     0% 93.45%      0.37s  0.75%  std::__copy_move_backward_a1 (inline)
+         0     0% 93.45%      0.37s  0.75%  std::__copy_move_backward_a2 (inline)
+         0     0% 93.45%      0.44s   0.9%  std::__fill_a (inline)
+         0     0% 93.45%      4.99s 10.15%  std::__final_insertion_sort (inline)
+         0     0% 93.45%      1.64s  3.34%  std::__invoke (inline)
+         0     0% 93.45%      2.55s  5.19%  std::__unguarded_partition_pivot (inline)
+         0     0% 93.45%      0.38s  0.77%  std::__uninitialized_default_n (inline)
+         0     0% 93.45%      0.38s  0.77%  std::__uninitialized_default_n_1::__uninit_default_n (inline)
+         0     0% 93.45%      0.38s  0.77%  std::__uninitialized_default_n_a (inline)
+         0     0% 93.45%      0.67s  1.36%  std::allocator::allocate (inline)
+         0     0% 93.45%      0.67s  1.36%  std::allocator_traits::allocate (inline)
+         0     0% 93.45%      0.66s  1.34%  std::allocator_traits::construct (inline)
+         0     0% 93.45%      0.39s  0.79%  std::atan2 (inline)
+         0     0% 93.45%      0.45s  0.92%  std::fill_n (inline)
+         0     0% 93.45%      0.37s  0.75%  std::move_backward (inline)
+         0     0% 93.45%      1.62s  3.30%  std::ranges::__detail::__make_comp_proj()::{lambda(auto:1&&, auto:2&&)#1}::operator() (inline)
+         0     0% 93.45%      7.88s 16.03%  std::ranges::__sort_fn::operator() (inline)
+         0     0% 93.45%      7.86s 15.99%  std::sort (inline)
+         0     0% 93.45%      1.06s  2.16%  std::vector::vector (inline)
+         0     0% 93.45%      0.25s  0.51%  std::vector::~vector

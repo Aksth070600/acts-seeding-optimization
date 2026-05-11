@@ -1,0 +1,26 @@
+\begin{tabular}{rlrr}
+\toprule
+\textbf{\#} & \textbf{Strip Seeding2 (top 20)} & \textbf{Flat\,\%} & \textbf{Cum\,\%} \\
+\midrule
+1 & \texttt{createDoubletsImpl (inline)} & 45.14 & 52.24 \\
+2 & \texttt{createPixelTripletTopCandidates (inline)} & 10.31 & 12.78 \\
+3 & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 6.17 & 6.17 \\
+4 & \texttt{Impl::createDoublets (partial-inline)} & 4.29 & 55.69 \\
+5 & \texttt{operator() (inline)} & 2.77 & 3.90 \\
+6 & \texttt{BroadTripletSeedFilter::filterTripletTopCandidates} & 2.42 & 2.98 \\
+7 & \texttt{std::\_\_unguarded\_partition (inline)} & 2.42 & 3.41 \\
+8 & \texttt{std::vector::emplace\_back (inline)} & 1.09 & 1.46 \\
+9 & \texttt{Impl::createTripletTopCandidates} & 1.07 & 13.85 \\
+10 & \texttt{DoubletsForMiddleSp::emplace\_back} & 1.07 & 1.91 \\
+11 & \texttt{(anonymous namespace)::createSeedsFromGroupsImpl} & 0.86 & 89.99 \\
+12 & \texttt{f64xsubf128} & 0.81 & 0.81 \\
+13 & \texttt{std::\_\_insertion\_sort (inline)} & 0.73 & 4.80 \\
+14 & \texttt{\{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta con}\ldots & 0.69 & 0.69 \\
+15 & \texttt{SpacePointContainer2::varianceR (inline)} & 0.64 & 0.64 \\
+16 & \texttt{std::vector::operator[] (inline)} & 0.64 & 0.64 \\
+17 & \texttt{Proxy::u (inline)} & 0.58 & 0.62 \\
+18 & \texttt{\_int\_malloc} & 0.51 & 0.56 \\
+19 & \texttt{std::\_\_do\_uninit\_copy (inline)} & 0.47 & 0.58 \\
+20 & \texttt{std::vector::push\_back (inline)} & 0.47 & 1.44 \\
+\bottomrule
+\end{tabular}

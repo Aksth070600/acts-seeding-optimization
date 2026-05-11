@@ -1,0 +1,154 @@
+Total: 24.37s
+ROUTINE ======================== createDoubletsImpl in /storage/thomaaks/acts-seeding-optimization/ACTS/source/Core/src/Seeding2/DoubletSeedFinder.cpp
+    21.06s     24.37s (flat, cum)   100% of Total
+         .          .     44:                          CandidateSps& candidateSps,
+         .          .     45:                          DoubletsForMiddleSp& compatibleDoublets) const {
+         .          .     46:    const float impactMax =
+         .          .     47:        isBottomCandidate ? -m_cfg.impactMax : m_cfg.impactMax;
+         .          .     48:
+         .       60ms     49:    const float xM = middleSp.xy()[0];
+         .          .     50:    const float yM = middleSp.xy()[1];
+      20ms       30ms     51:    const float zM = middleSp.zr()[0];
+     150ms      150ms     52:    const float rM = middleSp.zr()[1];
+         .       40ms     53:    const float varianceZM = middleSp.varianceZ();
+         .      220ms     54:    const float varianceRM = middleSp.varianceR();
+         .          .     55:
+         .          .     56:    // equivalent to impactMax / (rM * rM);
+         .          .     57:    const float vIPAbs = impactMax * middleSpInfo.uIP2;
+         .          .     58:
+         .          .     59:    const auto outsideRangeCheck = [](const float value, const float min,
+         .          .     60:                                      const float max) {
+         .          .     61:      // intentionally using `|` after profiling. faster due to better branch
+         .          .     62:      // prediction
+         .          .     63:      return static_cast<bool>(static_cast<int>(value < min) |
+         .          .     64:                               static_cast<int>(value > max));
+         .          .     65:    };
+         .          .     66:
+         .          .     67:    const auto calculateError = [&](float varianceZO, float varianceRO,
+         .          .     68:                                    float iDeltaR2, float cotTheta) {
+         .          .     69:      return iDeltaR2 * ((varianceZM + varianceZO) +
+         .          .     70:                         (cotTheta * cotTheta) * (varianceRM + varianceRO));
+         .          .     71:    };
+         .          .     72:
+         .          .     73:    if constexpr (sortedByR) {
+         .          .     74:      // find the first SP inside the radius region of interest and update
+         .          .     75:      // the iterator so we don't need to look at the other SPs again
+         .          .     76:      std::uint32_t offset = 0;
+      80ms      130ms     77:      for (ConstSpacePointProxy2 otherSp : candidateSps) {
+         .          .     78:        if constexpr (isBottomCandidate) {
+         .          .     79:          // if r-distance is too big, try next SP in bin
+     130ms      130ms     80:          if (rM - otherSp.zr()[1] <= m_cfg.deltaRMax) {
+         .          .     81:            break;
+         .          .     82:          }
+         .          .     83:        } else {
+         .          .     84:          // if r-distance is too small, try next SP in bin
+     360ms      360ms     85:          if (otherSp.zr()[1] - rM >= m_cfg.deltaRMin) {
+         .          .     86:            break;
+         .          .     87:          }
+         .          .     88:        }
+         .          .     89:
+     140ms      140ms     90:        ++offset;
+         .          .     91:      }
+         .       40ms     92:      candidateSps = candidateSps.subrange(offset);
+         .          .     93:    }
+         .          .     94:
+         .          .     95:    const SpacePointContainer2& container = candidateSps.container();
+     5.22s      5.42s     96:    for (auto [indexO, xyO, zrO, varianceZO, varianceRO] : candidateSps.zip(
+         .          .     97:             container.xyColumn(), container.zrColumn(),
+         .          .     98:             container.varianceZColumn(), container.varianceRColumn())) {
+         .          .     99:      const float xO = xyO[0];
+         .          .    100:      const float yO = xyO[1];
+     380ms      380ms    101:      const float zO = zrO[0];
+         .          .    102:      const float rO = zrO[1];
+         .          .    103:
+         .          .    104:      float deltaR = 0;
+         .          .    105:      if constexpr (isBottomCandidate) {
+     190ms      190ms    106:        deltaR = rM - rO;
+         .          .    107:
+         .          .    108:        if constexpr (sortedByR) {
+         .          .    109:          // if r-distance is too small we are done
+     1.16s      1.16s    110:          if (deltaR < m_cfg.deltaRMin) {
+         .          .    111:            break;
+         .          .    112:          }
+         .          .    113:        }
+         .          .    114:      } else {
+      30ms       30ms    115:        deltaR = rO - rM;
+         .          .    116:
+         .          .    117:        if constexpr (sortedByR) {
+         .          .    118:          // if r-distance is too big we are done
+     1.22s      1.22s    119:          if (deltaR > m_cfg.deltaRMax) {
+         .          .    120:            break;
+         .          .    121:          }
+         .          .    122:        }
+         .          .    123:      }
+         .          .    124:
+         .          .    125:      if constexpr (!sortedByR) {
+         .          .    126:        if (outsideRangeCheck(deltaR, m_cfg.deltaRMin, m_cfg.deltaRMax)) {
+         .          .    127:          continue;
+         .          .    128:        }
+         .          .    129:      }
+         .          .    130:
+         .          .    131:      float deltaZ = 0;
+         .          .    132:      if constexpr (isBottomCandidate) {
+     230ms      230ms    133:        deltaZ = zM - zO;
+         .          .    134:      } else {
+     140ms      140ms    135:        deltaZ = zO - zM;
+         .          .    136:      }
+         .          .    137:
+     2.42s      2.58s    138:      if (outsideRangeCheck(deltaZ, m_cfg.deltaZMin, m_cfg.deltaZMax)) {
+         .          .    139:        continue;
+         .          .    140:      }
+         .          .    141:
+         .          .    142:      // the longitudinal impact parameter zOrigin is defined as (zM - rM *
+         .          .    143:      // cotTheta) where cotTheta is the ratio Z/R (forward angle) of space
+         .          .    144:      // point duplet but instead we calculate (zOrigin * deltaR) and multiply
+         .          .    145:      // collisionRegion by deltaR to avoid divisions
+     400ms      400ms    146:      const float zOriginTimesDeltaR = zM * deltaR - rM * deltaZ;
+         .          .    147:      // check if duplet origin on z axis within collision region
+     5.41s      5.41s    148:      if (outsideRangeCheck(zOriginTimesDeltaR,
+         .          .    149:                            m_cfg.collisionRegionMin * deltaR,
+         .          .    150:                            m_cfg.collisionRegionMax * deltaR)) {
+         .          .    151:        continue;
+         .          .    152:      }
+         .          .    153:
+         .          .    154:      // if interactionPointCut is false we apply z cuts before coordinate
+         .          .    155:      // transformation to avoid unnecessary calculations. If
+         .          .    156:      // interactionPointCut is true we apply the curvature cut first because it
+         .          .    157:      // is more frequent but requires the coordinate transformation
+         .          .    158:      if constexpr (!interactionPointCut) {
+         .          .    159:        // check if duplet cotTheta is within the region of interest
+         .          .    160:        // cotTheta is defined as (deltaZ / deltaR) but instead we multiply
+         .          .    161:        // cotThetaMax by deltaR to avoid division
+     360ms      1.27s    162:        if (outsideRangeCheck(deltaZ, -m_cfg.cotThetaMax * deltaR,
+         .          .    163:                              m_cfg.cotThetaMax * deltaR)) {
+         .          .    164:          continue;
+         .          .    165:        }
+         .          .    166:
+         .          .    167:        // transform SP coordinates to the u-v reference frame
+      20ms       20ms    168:        const float deltaX = xO - xM;
+     140ms      140ms    169:        const float deltaY = yO - yM;
+         .          .    170:
+      10ms       10ms    171:        const float xNewFrame =
+     100ms      100ms    172:            deltaX * middleSpInfo.cosPhiM + deltaY * middleSpInfo.sinPhiM;
+     130ms      130ms    173:        const float yNewFrame =
+      50ms       50ms    174:            deltaY * middleSpInfo.cosPhiM - deltaX * middleSpInfo.sinPhiM;
+         .          .    175:
+     160ms      160ms    176:        const float deltaR2 = deltaX * deltaX + deltaY * deltaY;
+      60ms       60ms    177:        const float iDeltaR2 = 1 / deltaR2;
+         .          .    178:
+     680ms      680ms    179:        const float uT = xNewFrame * iDeltaR2;
+      70ms       70ms    180:        const float vT = yNewFrame * iDeltaR2;
+         .          .    181:
+         .      130ms    182:        const float iDeltaR = std::sqrt(iDeltaR2);
+     920ms      920ms    183:        const float cotTheta = deltaZ * iDeltaR;
+         .          .    184:
+         .          .    185:        const float er =
+         .      1.12s    186:            calculateError(varianceZO, varianceRO, iDeltaR2, cotTheta);
+         .          .    187:
+         .          .    188:        // fill output vectors
+     680ms      1.05s    189:        compatibleDoublets.emplace_back(indexO, cotTheta, iDeltaR, er, uT, vT,
+         .          .    190:                                        xNewFrame, yNewFrame);
+         .          .    191:        continue;
+         .          .    192:      }
+         .          .    193:
+         .          .    194:      // transform SP coordinates to the u-v reference frame

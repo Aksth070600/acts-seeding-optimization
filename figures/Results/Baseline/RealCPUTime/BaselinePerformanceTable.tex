@@ -1,0 +1,14 @@
+\renewcommand{\arraystretch}{1.4}
+\setlength{\tabcolsep}{5pt}
+\footnotesize
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Detector} & \multicolumn{2}{c}{\textbf{Time [ms/event]}} & \multicolumn{2}{c}{\textbf{Throughput [events/s]}} & \textbf{Speedup [95\% CI]} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+ & \texttt{Seeding} & \texttt{Seeding2} & \texttt{Seeding} & \texttt{Seeding2} & \\
+\midrule
+\rowcolor{gray!15}
+Pixel & $650.9 \pm 32.0$ & $584.3 \pm 27.6$ & $1.59 \pm 0.08$ & $1.77 \pm 0.09$ & $1.113\,[1.112,\,1.115]$ \\
+Strip & $194.8 \pm 11.8$ & $185.5 \pm 11.4$ & $5.40 \pm 0.34$ & $5.68 \pm 0.37$ & $1.051\,[1.048,\,1.054]$ \\
+\bottomrule
+\end{tabular}

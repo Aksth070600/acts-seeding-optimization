@@ -1,0 +1,33 @@
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+    \toprule
+    \textbf{Function} & \textbf{Metric} & \textbf{Baseline} & \textbf{O4} & \textbf{Ratio O4 / Baseline} \\
+    \midrule
+    \rowcolor{gray!40}
+    \multicolumn{5}{l}{\textbf{Pixel detector}} \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{GridTripletSeedingAlgorithm::execute}}} \\
+    & Peak memory & $14.5\,\mathrm{MB}$ & $15.2\,\mathrm{MB}$ & $1.05\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $86\,373$ & $69\,679$ & $0.81\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{CylindricalSpacePointGrid2::insert}}} \\
+    & Peak memory & $1.2\,\mathrm{MB}$ & $1.1\,\mathrm{MB}$ & $0.92\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $56\,425$ & $12\,151$ & $0.22\times$ \\
+    \rowcolor{gray!40}
+    \multicolumn{5}{l}{\textbf{Strip detector}} \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{GridTripletSeedingAlgorithm::execute}}} \\
+    & Peak memory & $8.2\,\mathrm{MB}$ & $8.5\,\mathrm{MB}$ & $1.04\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $65\,518$ & $59\,224$ & $0.90\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{CylindricalSpacePointGrid2::insert}}} \\
+    & Peak memory & $585.7\,\mathrm{kB}$ & $586.2\,\mathrm{kB}$ & ${\approx}1.0\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $25\,075$ & $7\,041$ & $0.28\times$ \\
+    \bottomrule
+\end{tabular}%
+}

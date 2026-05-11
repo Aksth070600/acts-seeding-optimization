@@ -1,0 +1,37 @@
+Total: 6.37s
+ROUTINE ======================== Acts::DoubletsForMiddleSp::sortByCotTheta in /storage/thomaaks/acts-seeding-optimization/ACTS/source/Core/include/Acts/Seeding2/DoubletSeedFinder.hpp
+     190ms      6.37s (flat, cum)   100% of Total
+         .          .     86:  using IndexAndCotThetaSubset = std::span<const IndexAndCotTheta>;
+         .          .     87:
+         .          .     88:  /// Sort doublets by cotTheta within given range
+         .          .     89:  /// @param range Index range to sort within
+         .          .     90:  /// @param indexAndCotTheta Output vector containing sorted index and cotTheta pairs
+      20ms       20ms     91:  void sortByCotTheta(const IndexRange& range,
+         .          .     92:                      std::vector<IndexAndCotTheta>& indexAndCotTheta) const {
+         .       20ms     93:    indexAndCotTheta.clear();
+         .       10ms     94:    indexAndCotTheta.reserve(range.second - range.first);
+      50ms       50ms     95:    for (Index i = range.first; i < range.second; ++i) {
+         .      310ms     96:      indexAndCotTheta.emplace_back(i, m_cotTheta[i]);
+         .          .     97:    }
+         .      5.84s     98:    std::ranges::sort(indexAndCotTheta, {}, [](const IndexAndCotTheta& item) {
+         .          .     99:      return item.cotTheta;
+         .          .    100:    });
+     120ms      120ms    101:  }
+         .          .    102:
+         .          .    103:  class Proxy {
+         .          .    104:   public:
+         .          .    105:    Proxy(const DoubletsForMiddleSp* container, Index index)
+         .          .    106:        : m_container(container), m_index(index) {}
+ROUTINE ======================== Acts::DoubletsForMiddleSp::sortByCotTheta() const::{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta const&)#1}::operator() in /storage/thomaaks/acts-seeding-optimization/ACTS/source/Core/include/Acts/Seeding2/DoubletSeedFinder.hpp
+     320ms      320ms (flat, cum)  5.02% of Total
+         .          .     94:    indexAndCotTheta.reserve(range.second - range.first);
+         .          .     95:    for (Index i = range.first; i < range.second; ++i) {
+         .          .     96:      indexAndCotTheta.emplace_back(i, m_cotTheta[i]);
+         .          .     97:    }
+         .          .     98:    std::ranges::sort(indexAndCotTheta, {}, [](const IndexAndCotTheta& item) {
+     320ms      320ms     99:      return item.cotTheta;
+         .          .    100:    });
+         .          .    101:  }
+         .          .    102:
+         .          .    103:  class Proxy {
+         .          .    104:   public:

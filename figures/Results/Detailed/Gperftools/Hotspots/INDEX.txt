@@ -1,0 +1,35 @@
+Hotspot annotation outputs
+============================================================
+
+[H1_createDoubletsImpl]
+  show_from : createDoubletsImpl
+  note      : H1 --- inner-loop predicate cost. Cost is distributed across the candidate-pair predicate sequence (collision-region origin check, deltaZ check, interaction-point cut, helix-diameter cut, Delegate-dispatched experiment-cuts call); the collision-region check is the single largest per-line contributor.
+  Pixel:
+    annotation : Pixel_H1_createDoubletsImpl_annotation.txt  [OK]
+  Strip:
+    annotation : Strip_H1_createDoubletsImpl_annotation.txt  [OK]
+
+[H2_createPixelTripletTopCandidates]
+  show_from : createPixelTripletTopCandidates
+  note      : H2 --- early-exit ordering inefficiency. ``error2`` (multi-line error-propagation) is computed before the cheap ``deltaCotTheta2`` (subtraction + square), so candidates that would be rejected on cot-theta grounds alone still pay the full error cost first.
+  Pixel:
+    annotation : Pixel_H2_createPixelTripletTopCandidates_annotation.txt  [OK]
+  Strip:
+    annotation : Strip_H2_createPixelTripletTopCandidates_annotation.txt  [OK]
+
+[H3_IndirectCall]
+  show_from : sortByCotTheta
+  note      : H3 --- indirect-call overhead. Filter symbol is ``sortByCotTheta`` (universal representative across both detector geometries): the projection lambda inside ``std::ranges::sort`` executes in its own frame, defeating compiler inlining at the projection-interface boundary. The same pattern appears in ``Acts::Delegate`` dispatches (``itkFastTrackingSPselect`` on pixel, ``itkFastTrackingCuts`` on strip), discussed in the thesis text.
+  Pixel:
+    annotation : Pixel_H3_IndirectCall_annotation.txt  [OK]
+  Strip:
+    annotation : Strip_H3_IndirectCall_annotation.txt  [OK]
+
+[H4_AllocationPressure]
+  show_from : DoubletsForMiddleSp::emplace_back
+  note      : H4 --- allocation pressure. Filter symbol is ``DoubletsForMiddleSp::emplace_back`` (dominant of the two H4 contributors): the struct-of-arrays doublet container performs five independent ``vector::push_back`` calls per accepted doublet, each on a separately-growing buffer. Grid bin ``push_back`` in ``CylindricalSpacePointGrid2::insert`` shares the same on-demand-growth pattern and is discussed in the thesis text.
+  Pixel:
+    annotation : Pixel_H4_AllocationPressure_annotation.txt  [OK]
+  Strip:
+    annotation : Strip_H4_AllocationPressure_annotation.txt  [OK]
+

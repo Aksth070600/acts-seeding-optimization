@@ -1,0 +1,26 @@
+\begin{tabular}{rlrr}
+\toprule
+\textbf{\#} & \textbf{Pixel Seeding2 (top 20)} & \textbf{Flat\,\%} & \textbf{Cum\,\%} \\
+\midrule
+1 & \texttt{createDoubletsImpl (inline)} & 56.83 & 63.44 \\
+2 & \texttt{createPixelTripletTopCandidates (inline)} & 6.29 & 8.30 \\
+3 & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 5.53 & 5.53 \\
+4 & \texttt{Impl::createDoublets (partial-inline)} & 3.96 & 66.34 \\
+5 & \texttt{std::\_\_unguarded\_partition (inline)} & 3.17 & 4.80 \\
+6 & \texttt{\{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta con}\ldots & 1.22 & 1.22 \\
+7 & \texttt{std::vector::emplace\_back (inline)} & 1.22 & 1.44 \\
+8 & \texttt{BroadTripletSeedFilter::filterTripletTopCandidates} & 1.17 & 1.66 \\
+9 & \texttt{DoubletsForMiddleSp::emplace\_back} & 0.93 & 2.04 \\
+10 & \texttt{f64xsubf128} & 0.91 & 0.91 \\
+11 & \texttt{\{lambda(void const*, Acts::SpacePointProxy2 const\&, Act}\ldots & 0.91 & 1.15 \\
+12 & \texttt{operator() (partial-inline)} & 0.74 & 1.28 \\
+13 & \texttt{std::vector::push\_back (inline)} & 0.58 & 1.54 \\
+14 & \texttt{std::\_\_insertion\_sort (inline)} & 0.57 & 3.04 \\
+15 & \texttt{std::\_\_introsort\_loop} & 0.53 & 6.23 \\
+16 & \texttt{(anonymous namespace)::createSeedsFromGroupsImpl} & 0.52 & 92.53 \\
+17 & \texttt{Impl::createTripletTopCandidates} & 0.51 & 8.81 \\
+18 & \texttt{DoubletsForMiddleSp::sortByCotTheta} & 0.36 & 13.57 \\
+19 & \texttt{std::\_\_invoke\_impl (inline)} & 0.33 & 2.81 \\
+20 & \texttt{(anonymous namespace)::createAndFilterTriplets} & 0.31 & 10.92 \\
+\bottomrule
+\end{tabular}

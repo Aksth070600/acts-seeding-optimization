@@ -1,0 +1,24 @@
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+    \toprule
+    \textbf{Function} & \textbf{Metric} & \textbf{Cylindrical} & \textbf{Spherical} & \textbf{Ratio Spherical / Cylindrical} \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{GridTripletSeedingAlgorithm::execute}}} \\
+    & Peak memory & $2.2\,\mathrm{MB}$ & $1.6\,\mathrm{MB}$ & $0.73\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $77\,381$ & $114\,310$ & $1.48\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{TripletSeeder::createSeedsFromGroups}}} \\
+    & Peak memory & $60.8\,\mathrm{kB}$ & $10.3\,\mathrm{kB}$ & $0.17\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $75\,571$ & $70\,436$ & $0.93\times$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{\texttt{SpacePointGrid2::insert}}} \\
+    & Peak memory & $0\,\mathrm{B}$ & $0\,\mathrm{B}$ & ${\approx}1.0\times$ \\
+    \rowcolor{gray!15}
+    & Allocations & $1\,622$ & $43\,674$ & $26.93\times$ \\
+    \bottomrule
+\end{tabular}%
+}

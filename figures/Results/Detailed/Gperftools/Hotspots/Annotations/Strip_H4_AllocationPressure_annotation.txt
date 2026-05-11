@@ -1,0 +1,21 @@
+Total: 890ms
+ROUTINE ======================== Acts::DoubletsForMiddleSp::emplace_back in /storage/thomaaks/acts-seeding-optimization/ACTS/source/Core/include/Acts/Seeding2/DoubletSeedFinder.hpp
+     500ms      890ms (flat, cum)   100% of Total
+         .          .     57:  /// @param er Error in R coordinate
+         .          .     58:  /// @param u U coordinate parameter
+         .          .     59:  /// @param v V coordinate parameter
+         .          .     60:  /// @param x X coordinate
+         .          .     61:  /// @param y Y coordinate
+     340ms      340ms     62:  void emplace_back(SpacePointIndex2 sp, float cotTheta, float iDeltaR,
+         .          .     63:                    float er, float u, float v, float x, float y) {
+         .       70ms     64:    m_spacePoints.push_back(sp);
+         .       80ms     65:    m_cotTheta.push_back(cotTheta);
+         .      130ms     66:    m_er_iDeltaR.push_back({er, iDeltaR});
+         .          .     67:    m_uv.push_back({u, v});
+         .      110ms     68:    m_xy.push_back({x, y});
+     160ms      160ms     69:  }
+         .          .     70:
+         .          .     71:  /// Get reference to space point indices container
+         .          .     72:  /// @return Const reference to space point indices vector
+         .          .     73:  const std::vector<SpacePointIndex2>& spacePoints() const {
+         .          .     74:    return m_spacePoints;

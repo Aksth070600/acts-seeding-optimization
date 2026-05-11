@@ -1,0 +1,28 @@
+\renewcommand{\arraystretch}{1.4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l rrr rrr}
+    \toprule
+     & \multicolumn{3}{c}{\textbf{Pixel detector}} & \multicolumn{3}{c}{\textbf{Strip detector}} \\
+    \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+    \textbf{Stage} & \textbf{Excl.\ time} & \textbf{Time/evt} & \textbf{Calls/evt} & \textbf{Excl.\ time} & \textbf{Time/evt} & \textbf{Calls/evt} \\
+     & [\%] & [ms] & & [\%] & [ms] & \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{7}{l}{\textbf{Top-level dispatch}} \\
+    Seeding & $3.5 \pm 0.0$ & $20.6 \pm 0.2$ & 1 & $3.7 \pm 0.1$ & $6.91 \pm 0.09$ & 1 \\
+    \rowcolor{gray!15}
+    GridSetup & $3.5 \pm 0.0$ & $20.3 \pm 0.1$ & 1 & $5.4 \pm 0.1$ & $10.0 \pm 0.1$ & 1 \\
+    ConvertProxSeeds & $0.1 \pm 0.0$ & $0.61 \pm 0.02$ & 1 & $0.3 \pm 0.0$ & $0.47 \pm 0.02$ & 1 \\
+    \rowcolor{gray!15}
+    createSeedsGroup & $1.0 \pm 0.0$ & $5.56 \pm 0.03$ & 1800 & $1.5 \pm 0.0$ & $2.83 \pm 0.01$ & 924 \\
+    \rowcolor{gray!25}
+    \multicolumn{7}{l}{\textbf{Inner-loop hotspots}} \\
+    MiddleTops & $34.4 \pm 0.0$ & $200.4 \pm 0.5$ & $\approx$\,103{,}523 & $26.3 \pm 0.2$ & $49.1 \pm 0.1$ & $\approx$\,49{,}385 \\
+    \rowcolor{gray!15}
+    MiddleBottoms & $32.2 \pm 0.0$ & $187.8 \pm 0.4$ & $\approx$\,82{,}434 & $29.7 \pm 0.6$ & $55.6 \pm 1.7$ & $\approx$\,43{,}771 \\
+    TripletEval & $24.8 \pm 0.0$ & $144.5 \pm 0.3$ & $\approx$\,77{,}850 & $31.5 \pm 0.3$ & $58.9 \pm 0.1$ & $\approx$\,42{,}017 \\
+    \rowcolor{gray!15}
+    SeedFiltering & $0.6 \pm 0.0$ & $3.53 \pm 0.02$ & $\approx$\,77{,}850 & $1.7 \pm 0.0$ & $3.12 \pm 0.05$ & $\approx$\,42{,}017 \\
+    \bottomrule
+\end{tabular}%
+}

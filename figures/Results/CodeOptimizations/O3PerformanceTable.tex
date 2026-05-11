@@ -1,0 +1,25 @@
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llrrr}
+    \toprule
+    \textbf{Detector} & \textbf{Metric} & \textbf{Baseline} & \textbf{O3} & \textbf{Speedup / Rel.\ change} \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Pixel detector}} \\
+    & Global time/event [ms] & $581.76 \pm 27.57$ & $585.44 \pm 27.65$ & $0.994\,[0.993,\,0.994]$ \\
+    \rowcolor{gray!15}
+& Global instructions (Ir) & $10.233 \times 10^{9}$ & $10.220 \times 10^{9}$ & $-0.13\%$ \\
+    & \texttt{sortByCotTheta} (Ir) & $614.93 \times 10^{6}$ & $436.43 \times 10^{6}$ & $-29.03\%$ \\
+    \rowcolor{gray!15}
+& Global branch mispred.\ (Bcm) & $82.97 \times 10^{6}$ & $82.52 \times 10^{6}$ & $-0.54\%$ \\
+    & \texttt{sortByCotTheta} mispred.\ (Bcm) & $20.96 \times 10^{6}$ & $11.22 \times 10^{6}$ & $-46.44\%$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Strip detector}} \\
+    & Global time/event [ms] & $185.56 \pm 11.43$ & $183.98 \pm 11.22$ & $1.009\,[1.008,\,1.009]$ \\
+    \rowcolor{gray!15}
+& Global instructions (Ir) & $3.615 \times 10^{9}$ & $3.611 \times 10^{9}$ & $-0.11\%$ \\
+    & \texttt{sortByCotTheta} (Ir) & $256.10 \times 10^{6}$ & $198.71 \times 10^{6}$ & $-22.41\%$ \\
+    \rowcolor{gray!15}
+& Global branch mispred.\ (Bcm) & $27.71 \times 10^{6}$ & $27.85 \times 10^{6}$ & $+0.51\%$ \\
+    & \texttt{sortByCotTheta} mispred.\ (Bcm) & $7.22 \times 10^{6}$ & $4.92 \times 10^{6}$ & $-31.89\%$ \\
+    \bottomrule
+\end{tabular}

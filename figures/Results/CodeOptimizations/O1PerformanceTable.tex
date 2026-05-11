@@ -1,0 +1,29 @@
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llrrr}
+    \toprule
+    \textbf{Detector} & \textbf{Metric} & \textbf{Baseline} & \textbf{O1} & \textbf{Speedup / Rel.\ change} \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Pixel detector}} \\
+    & Global time/event [ms] & $581.76 \pm 27.57$ & $558.76 \pm 26.26$ & $1.041\,[1.040,\,1.042]$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} [ns] & $226.09 \pm 3.68$ & $224.11 \pm 0.76$ & $1.009\,[0.998,\,1.026]$ \\
+    & Global instructions (Ir) & $10.233 \times 10^{9}$ & $9.318 \times 10^{9}$ & $-8.94\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} (Ir) & $7.084 \times 10^{9}$ & $6.175 \times 10^{9}$ & $-12.84\%$ \\
+    & Global branch mispred.\ (Bcm) & $82.97 \times 10^{6}$ & $81.74 \times 10^{6}$ & $-1.48\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} mispred.\ (Bcm) & $49.26 \times 10^{6}$ & $48.79 \times 10^{6}$ & $-0.95\%$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Strip detector}} \\
+    & Global time/event [ms] & $185.56 \pm 11.43$ & $179.14 \pm 10.84$ & $1.035\,[1.034,\,1.036]$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} [ns] & $116.79 \pm 0.28$ & $117.48 \pm 0.75$ & $0.994\,[0.989,\,0.999]$ \\
+    & Global instructions (Ir) & $3.615 \times 10^{9}$ & $3.288 \times 10^{9}$ & $-9.05\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} (Ir) & $2.193 \times 10^{9}$ & $1.865 \times 10^{9}$ & $-14.94\%$ \\
+    & Global branch mispred.\ (Bcm) & $27.71 \times 10^{6}$ & $27.98 \times 10^{6}$ & $+0.97\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createDoubletsImpl} mispred.\ (Bcm) & $15.14 \times 10^{6}$ & $15.70 \times 10^{6}$ & $+3.71\%$ \\
+    \bottomrule
+\end{tabular}

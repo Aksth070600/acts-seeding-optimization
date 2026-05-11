@@ -1,0 +1,62 @@
+File: python3.9
+Type: cpu
+Active filters:
+   show_from=GridTripletSeedingAlgorithm
+Showing nodes accounting for 133.91s, 90.55% of 147.88s total
+Dropped 289 nodes (cum <= 0.74s)
+      flat  flat%   sum%        cum   cum%
+    84.04s 56.83% 56.83%     93.81s 63.44%  createDoubletsImpl (inline)
+     9.30s  6.29% 63.12%     12.28s  8.30%  createPixelTripletTopCandidates (inline)
+     8.18s  5.53% 68.65%      8.18s  5.53%  std::__unguarded_linear_insert (inline)
+     5.85s  3.96% 72.61%     98.11s 66.34%  Acts::(anonymous namespace)::Impl::createDoublets (partial-inline)
+     4.69s  3.17% 75.78%      7.10s  4.80%  std::__unguarded_partition (inline)
+     3.78s  2.56% 78.33%    147.88s   100%  ActsExamples::GridTripletSeedingAlgorithm::execute (inline)
+     1.81s  1.22% 79.56%      1.81s  1.22%  Acts::DoubletsForMiddleSp::sortByCotTheta() const::{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta const&)#1}::operator() (inline)
+     1.80s  1.22% 80.77%      2.13s  1.44%  std::vector::emplace_back (inline)
+     1.73s  1.17% 81.94%      2.46s  1.66%  Acts::BroadTripletSeedFilter::filterTripletTopCandidates
+     1.37s  0.93% 82.87%      3.01s  2.04%  Acts::DoubletsForMiddleSp::emplace_back
+     1.35s  0.91% 83.78%      1.35s  0.91%  f64xsubf128
+     1.34s  0.91% 84.69%      1.70s  1.15%  Acts::Delegate::connect()::{lambda(void const*, Acts::SpacePointProxy2 const&, Acts::SpacePointProxy2 const&, float, bool)#1}::_FUN
+     1.10s  0.74% 85.43%      1.89s  1.28%  operator() (partial-inline)
+     0.86s  0.58% 86.02%      2.27s  1.54%  std::vector::push_back (inline)
+     0.85s  0.57% 86.59%      4.49s  3.04%  std::__insertion_sort (inline)
+     0.78s  0.53% 87.12%      9.22s  6.23%  std::__introsort_loop
+     0.77s  0.52% 87.64%    136.83s 92.53%  Acts::(anonymous namespace)::createSeedsFromGroupsImpl
+     0.75s  0.51% 88.15%     13.03s  8.81%  Acts::(anonymous namespace)::Impl::createTripletTopCandidates
+     0.53s  0.36% 88.50%     20.06s 13.57%  Acts::DoubletsForMiddleSp::sortByCotTheta
+     0.49s  0.33% 88.84%      4.16s  2.81%  std::__invoke_impl (inline)
+     0.46s  0.31% 89.15%     16.15s 10.92%  Acts::(anonymous namespace)::createAndFilterTriplets
+     0.34s  0.23% 89.38%      0.76s  0.51%  std::__copy_move_backward::__copy_move_b (inline)
+     0.30s   0.2% 89.58%      0.85s  0.57%  Acts::SpacePointContainer2::zip (inline)
+     0.26s  0.18% 89.76%    137.18s 92.76%  Acts::TripletSeeder::createSeedsFromGroups
+     0.25s  0.17% 89.92%      0.77s  0.52%  Acts::Axis::getBin (inline)
+     0.15s   0.1% 90.03%      0.76s  0.51%  Acts::BroadTripletSeedFilter::filterTripletsMiddleFixed
+     0.15s   0.1% 90.13%     18.59s 12.57%  std::__sort (inline)
+     0.13s 0.088% 90.22%      5.37s  3.63%  std::__unguarded_insertion_sort (inline)
+     0.11s 0.074% 90.29%      0.75s  0.51%  Acts::SpacePointContainer2::assignSourceLinks
+     0.11s 0.074% 90.36%      1.47s  0.99%  atan2f32x
+     0.09s 0.061% 90.42%      1.85s  1.25%  Acts::CylindricalSpacePointGrid2::insert
+     0.07s 0.047% 90.47%      1.10s  0.74%  Acts::CylindricalSpacePointGrid2::binIndex (inline)
+     0.05s 0.034% 90.51%      1.79s  1.21%  operator (inline)
+     0.05s 0.034% 90.54%      9.91s  6.70%  std::__final_insertion_sort (inline)
+     0.01s 0.0068% 90.55%      0.76s  0.51%  Acts::SpacePointProxy2::assignSourceLinks (inline)
+     0.01s 0.0068% 90.55%      0.75s  0.51%  __sort (inline)
+         0     0% 90.55%      2.32s  1.57%  Acts::Delegate::operator() (inline)
+         0     0% 90.55%      0.99s  0.67%  Acts::Grid::globalBinFromPosition (inline)
+         0     0% 90.55%      0.78s  0.53%  Acts::Grid::localBinsFromPosition (inline)
+         0     0% 90.55%      0.85s  0.57%  Acts::SpacePointContainer2::Range::zip (inline)
+         0     0% 90.55%      0.78s  0.53%  Acts::detail::grid_helper::getLocalBinIndices (inline)
+         0     0% 90.55%      0.78s  0.53%  Acts::detail::grid_helper_impl::getLocalBinIndices (inline)
+         0     0% 90.55%      0.74s   0.5%  __final_insertion_sort (inline)
+         0     0% 90.55%      1.81s  1.22%  __gnu_cxx::__ops::_Iter_comp_iter::operator() (inline)
+         0     0% 90.55%      1.62s  1.10%  sort (inline)
+         0     0% 90.55%      0.76s  0.51%  std::__copy_move_backward_a (inline)
+         0     0% 90.55%      0.76s  0.51%  std::__copy_move_backward_a1 (inline)
+         0     0% 90.55%      0.76s  0.51%  std::__copy_move_backward_a2 (inline)
+         0     0% 90.55%      4.16s  2.81%  std::__invoke (inline)
+         0     0% 90.55%      7.65s  5.17%  std::__unguarded_partition_pivot (inline)
+         0     0% 90.55%      2.32s  1.57%  std::invoke (inline)
+         0     0% 90.55%      0.76s  0.51%  std::move_backward (inline)
+         0     0% 90.55%      1.83s  1.24%  std::ranges::__detail::__make_comp_proj()::{lambda(auto:1&&, auto:2&&)#1}::operator() (inline)
+         0     0% 90.55%     18.59s 12.57%  std::ranges::__sort_fn::operator() (inline)
+         0     0% 90.55%     18.59s 12.57%  std::sort (inline)

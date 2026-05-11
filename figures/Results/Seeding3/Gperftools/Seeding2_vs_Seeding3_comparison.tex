@@ -1,0 +1,29 @@
+\begin{tabular}{rlrr}
+\toprule
+\textbf{\#} & \textbf{Function} & \textbf{Flat\,\%} & \textbf{Cum\,\%} \\
+\midrule
+\multicolumn{4}{l}{\textbf{Seeding2}} \\
+\quad & \texttt{createDoubletsImpl (inline)} & 24.70 & 30.28 \\
+\quad & \texttt{createPixelTripletTopCandidates (inline)} & 23.95 & 28.44 \\
+\quad & \texttt{std::\_\_unguarded\_partition (inline)} & 10.68 & 15.69 \\
+\quad & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 8.80 & 8.80 \\
+\quad & \texttt{\{lambda(Acts::DoubletsForMiddleSp::IndexAndCotTheta con}\ldots & 3.75 & 3.75 \\
+\quad & \texttt{BroadTripletSeedFilter::filterTripletTopCandidates (par}\ldots & 3.69 & 7.43 \\
+\quad & \texttt{Impl::createDoublets (partial-inline)} & 2.71 & 31.43 \\
+\quad & \texttt{Impl::createTripletTopCandidates} & 2.12 & 30.56 \\
+\quad & \texttt{operator() (inline)} & 1.58 & 2.25 \\
+\quad & \texttt{std::vector::operator[] (inline)} & 1.44 & 1.44 \\
+\\[-0.5em]
+\multicolumn{4}{l}{\textbf{Seeding3}} \\
+\quad & \texttt{createDoubletsImpl (inline)} & 16.96 & 23.35 \\
+\quad & \texttt{createPixelTripletTopCandidates (inline)} & 16.45 & 19.90 \\
+\quad & \texttt{std::\_\_unguarded\_linear\_insert (inline)} & 7.42 & 7.42 \\
+\quad & \texttt{Impl::createDoublets (partial-inline)} & 3.74 & 26.06 \\
+\quad & \texttt{BroadTripletSeedFilter::filterTripletTopCandidates (par}\ldots & 3.74 & 9.03 \\
+\quad & \texttt{std::\_\_unguarded\_partition (inline)} & 3.30 & 4.48 \\
+\quad & \texttt{f64xsubf128} & 2.42 & 2.42 \\
+\quad & \texttt{Impl::createTripletTopCandidates} & 2.28 & 22.17 \\
+\quad & \texttt{std::vector::emplace\_back (inline)} & 2.13 & 2.86 \\
+\quad & \texttt{operator() (inline)} & 2.06 & 4.70 \\
+\bottomrule
+\end{tabular}

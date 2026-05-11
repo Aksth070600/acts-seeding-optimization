@@ -1,0 +1,29 @@
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{llrrr}
+    \toprule
+    \textbf{Detector} & \textbf{Metric} & \textbf{Baseline} & \textbf{O2} & \textbf{Speedup / Rel.\ change} \\
+    \midrule
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Pixel detector}} \\
+    & Global time/event [ms] & $581.76 \pm 27.57$ & $578.86 \pm 27.26$ & $1.005\,[1.005,\,1.005]$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} [ns] & $33.54 \pm 0.16$ & $31.08 \pm 0.10$ & $1.079\,[1.072,\,1.087]$ \\
+    & Global instructions (Ir) & $10.233 \times 10^{9}$ & $10.249 \times 10^{9}$ & $+0.15\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} (Ir) & $709.41 \times 10^{6}$ & $723.75 \times 10^{6}$ & $+2.02\%$ \\
+    & Global branch mispred.\ (Bcm) & $82.97 \times 10^{6}$ & $82.47 \times 10^{6}$ & $-0.60\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} mispred.\ (Bcm) & $5.54 \times 10^{6}$ & $5.76 \times 10^{6}$ & $+3.93\%$ \\
+    \rowcolor{gray!25}
+    \multicolumn{5}{l}{\textbf{Strip detector}} \\
+    & Global time/event [ms] & $185.56 \pm 11.43$ & $182.22 \pm 11.00$ & $1.018\,[1.017,\,1.019]$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} [ns] & $35.95 \pm 0.14$ & $32.11 \pm 0.21$ & $1.120\,[1.114,\,1.126]$ \\
+    & Global instructions (Ir) & $3.615 \times 10^{9}$ & $3.613 \times 10^{9}$ & $-0.05\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} (Ir) & $382.86 \times 10^{6}$ & $380.57 \times 10^{6}$ & $-0.60\%$ \\
+    & Global branch mispred.\ (Bcm) & $27.71 \times 10^{6}$ & $27.88 \times 10^{6}$ & $+0.61\%$ \\
+    \rowcolor{gray!15}
+& \texttt{createPixelTripletTopCandidates} mispred.\ (Bcm) & $3.14 \times 10^{6}$ & $3.48 \times 10^{6}$ & $+10.79\%$ \\
+    \bottomrule
+\end{tabular}
