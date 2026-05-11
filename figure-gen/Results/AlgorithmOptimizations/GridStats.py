@@ -155,9 +155,18 @@ def _row_f2(label, c, s):
             _signed_f2(s - c), _pct_diff(c, s))
 
 
+def _empty_pct(total, populated):
+    if total is None or populated is None or total == 0:
+        return None
+    return (1.0 - populated / total) * 100.0
+
+
 def build_tabular(cyl_ev: dict, sph_ev: dict) -> str:
     c = aggregate(cyl_ev)
     s = aggregate(sph_ev)
+
+    c_empty = _empty_pct(c["bins_per_event"], c["populated_bins"])
+    s_empty = _empty_pct(s["bins_per_event"], s["populated_bins"])
 
     rows = [
         _row_int("Space points / event",       c["sps_per_event"],       s["sps_per_event"]),
@@ -166,6 +175,7 @@ def build_tabular(cyl_ev: dict, sph_ev: dict) -> str:
         _row_int("$r$ bins",                   c["r_bins"],              s["r_bins"]),
         _row_int("Bins / event",               c["bins_per_event"],      s["bins_per_event"]),
         _row_int("Populated bins / event",     c["populated_bins"],      s["populated_bins"]),
+        _row_f2 (r"Empty bins [\%]",           c_empty,                   s_empty),
         _row_f2 ("Mean SPs per populated bin", c["mean_sps_per_pop_bin"], s["mean_sps_per_pop_bin"]),
         _row_int("Seeds / event",              c["seeds_per_event"],     s["seeds_per_event"]),
     ]
