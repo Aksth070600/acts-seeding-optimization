@@ -1,5 +1,10 @@
 # Performance Optimization of the ACTS Track Seeding Algorithm
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) <!-- Replace XXXXXXX with the concept DOI Zenodo assigns after the first release is archived. -->
+[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
+
+**Status:** Frozen at the `v1.0` release accompanying the thesis submission (Spring 2026). This snapshot is archived on Zenodo (see DOI badge above). No further commits are planned; any post-submission corrections will be made via new tagged releases.
+
 This repository contains the setup, code, and scripts used to produce the results in the master's thesis
 
 **"Optimization of the computing performance of the inner detector track seeding algorithm used by ATLAS for High Luminosity LHC data"**
