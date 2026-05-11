@@ -13,9 +13,11 @@ from typing import List, Optional, Tuple
 # and the Pixel/Strip create*TripletTopCandidates names are templated
 # specialisations of createTripletTopCandidates.
 FUNCTION_PATTERNS = [
-    ("createDoubletsImpl",              "createDoublets"),
-    ("createPixelTripletTopCandidates", "createTripletTopCandidates"),
-    ("filterTripletTopCandidates",      "filterTripletTopCandidates"),
+    ("createDoubletsImpl",                   "createDoublets"),
+    ("createPixelTripletTopCandidates",      "createTripletTopCandidates"),
+    ("filterTripletTopCandidates",           "filterTripletTopCandidates"),
+    ("TripletSeeder::createSeedsFromGroups", "createSeedsFromGroups"),
+    ("SpacePointGrid2::insert",              "SpacePointGrid2::insert"),
 ]
 
 def run_callgrind_annotate(path: str) -> str:
