@@ -93,21 +93,50 @@ def get(stats: dict, name: str, field: str = 'mean') -> float:
         return float('nan')
     return float(stats[name][field])
 
+
+def total_bins_per_event(stats: dict) -> float:
+    phi   = stats.get('grid_phi_bins', {}).get('mean')
+    axis2 = (stats.get('grid_z_bins', {}).get('mean')
+             or stats.get('grid_eta_bins', {}).get('mean'))
+    r     = stats.get('grid_r_bins', {}).get('mean')
+    if phi and axis2 and r:
+        return phi * axis2 * r
+    return get(stats, 'num_bins', 'count_per_event')
+
+
+def axis2_bins(stats: dict) -> float:
+    v = (stats.get('grid_z_bins', {}).get('mean')
+         or stats.get('grid_eta_bins', {}).get('mean'))
+    return float(v) if v else float('nan')
+
+
+def empty_bins_pct(stats: dict) -> float:
+    total = total_bins_per_event(stats)
+    occupied = get(stats, 'occupied_bins', 'count_per_event')
+    if _nan(total) or _nan(occupied) or total == 0:
+        return float('nan')
+    return (1.0 - occupied / total) * 100.0
+
+
 STAGES = [
     ("Grid", [
-        ("Total bins",                'num_bins',           'count_per_event',    fi),
-        ("Occupied bins",             'occupied_bins',      'count_per_event',    fi),
-        ("Mean SPs per occupied bin", 'sp_per_bin',         'total_per_occupied', lambda v: ff(v, 2)),
+        ("Total bins",                total_bins_per_event,                                       fi),
+        (r"$n_\phi$ bins",            lambda s: get(s, 'grid_phi_bins', 'mean'),                  fi),
+        (r"$n_{z/\eta}$ bins",        axis2_bins,                                                 fi),
+        (r"$n_r$ bins",               lambda s: get(s, 'grid_r_bins', 'mean'),                    fi),
+        ("Occupied bins",             lambda s: get(s, 'occupied_bins', 'count_per_event'),       fi),
+        (r"Empty bins [\%]",          empty_bins_pct,                                             lambda v: ff(v, 2)),
+        ("Mean SPs per occupied bin", lambda s: get(s, 'sp_per_bin', 'total_per_occupied'),       lambda v: ff(v, 2)),
     ]),
     ("Doublets", [
-        ("Bottom candidates",         'bottom_candidates',  'total_per_event',    fi),
-        ("Top candidates",            'top_candidates',     'total_per_event',    fi),
+        ("Bottom candidates",         lambda s: get(s, 'bottom_candidates', 'total_per_event'),   fi),
+        ("Top candidates",            lambda s: get(s, 'top_candidates', 'total_per_event'),      fi),
     ]),
     ("Triplets", [
-        ("Created triplets",          'triplets_evaluated', 'total_per_event',    fi),
+        ("Created triplets",          lambda s: get(s, 'triplets_evaluated', 'total_per_event'),  fi),
     ]),
     ("Output", [
-        ("Total seeds",               'total_seeds',        'total_per_event',    fi),
+        ("Total seeds",               lambda s: get(s, 'total_seeds', 'total_per_event'),         fi),
     ]),
 ]
 
@@ -117,9 +146,9 @@ def build_geometry_rows(s1: dict, s2: dict, start_zebra: bool = False) -> list[s
     zebra = start_zebra
 
     for stage_label, metrics in STAGES:
-        for i, (metric, key, field, fmt_val) in enumerate(metrics):
-            v1 = get(s1, key, field)
-            v2 = get(s2, key, field)
+        for i, (metric, value_fn, fmt_val) in enumerate(metrics):
+            v1 = value_fn(s1)
+            v2 = value_fn(s2)
 
             stage_cell = stage_label if i == 0 else ""
 

@@ -96,12 +96,27 @@ def total_bins_per_event(stats: dict) -> float:
     # Full grid cardinality (nPhi * nAxis2 * nR) from per-axis STATS counters.
     # Falls back to num_bins.count_per_event for CSVs missing those counters.
     phi   = stats.get('grid_phi_bins', {}).get('mean')
-    axis2 = (stats.get('grid_eta_bins', {}).get('mean')
-             or stats.get('grid_z_bins', {}).get('mean'))
+    axis2 = (stats.get('grid_z_bins', {}).get('mean')
+             or stats.get('grid_eta_bins', {}).get('mean'))
     r     = stats.get('grid_r_bins', {}).get('mean')
     if phi and axis2 and r:
         return phi * axis2 * r
     return get(stats, 'num_bins', 'count_per_event')
+
+
+def axis2_bins(stats: dict) -> float:
+    v = (stats.get('grid_z_bins', {}).get('mean')
+         or stats.get('grid_eta_bins', {}).get('mean'))
+    return float(v) if v else float('nan')
+
+
+def empty_bins_pct(stats: dict) -> float:
+    total = total_bins_per_event(stats)
+    occupied = get(stats, 'occupied_bins', 'count_per_event')
+    if _nan(total) or _nan(occupied) or total == 0:
+        return float('nan')
+    return (1.0 - occupied / total) * 100.0
+
 
 def data_row(
     stage: str,
@@ -127,10 +142,30 @@ def build_rows(s2: dict, s3: dict) -> list[str]:
          total_bins_per_event(s3),
          fi),
         (None,
+         r"$n_\phi$ bins",
+         get(s2, 'grid_phi_bins', 'mean'),
+         get(s3, 'grid_phi_bins', 'mean'),
+         fi),
+        (None,
+         r"$n_{z/\eta}$ bins",
+         axis2_bins(s2),
+         axis2_bins(s3),
+         fi),
+        (None,
+         r"$n_r$ bins",
+         get(s2, 'grid_r_bins', 'mean'),
+         get(s3, 'grid_r_bins', 'mean'),
+         fi),
+        (None,
          "Occupied bins",
          get(s2, 'occupied_bins', 'count_per_event'),
          get(s3, 'occupied_bins', 'count_per_event'),
          fi),
+        (None,
+         r"Empty bins [\%]",
+         empty_bins_pct(s2),
+         empty_bins_pct(s3),
+         lambda v: ff(v, 2)),
         (None,
          "Mean SPs per occupied bin",
          get(s2, 'sp_per_bin', 'total_per_occupied'),
