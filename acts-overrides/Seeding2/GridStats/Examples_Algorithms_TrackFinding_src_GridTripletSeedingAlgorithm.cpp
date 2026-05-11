@@ -180,10 +180,7 @@ ProcessCode GridTripletSeedingAlgorithm::execute(
                                       const Acts::SpacePointIndex2& b) {
       return spacePoints[a].r() < spacePoints[b].r();
     });
-  }
-
-  for (const auto& [bottom, middle, top] : grid.binnedGroup()) {
-    bin_occupancy(static_cast<std::int64_t>(grid.at(middle).size()));
+    bin_occupancy(static_cast<std::int64_t>(grid.at(i).size()));
   }
 
   Acts::SpacePointContainer2 coreSpacePoints(

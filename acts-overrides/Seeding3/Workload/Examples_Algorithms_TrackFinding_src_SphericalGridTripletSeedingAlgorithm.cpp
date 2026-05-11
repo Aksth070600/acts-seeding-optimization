@@ -231,15 +231,12 @@ ProcessCode SphericalGridTripletSeedingAlgorithm::execute(
                           const Acts::SpacePointIndex2& b) {
                         return spacePoints[a].r() < spacePoints[b].r();
                       });
-  }
-
-  for (const auto& [bottom, middle, top] : sphericalGrid->binnedGroup()) {
-    const auto sz = sphericalGrid->at(middle).size();
+    const auto sz = sphericalGrid->at(i).size();
     num_bins(1);
+    sp_per_bin(static_cast<std::int64_t>(sz));
     if (sz > 0) {
       occupied_bins(1);
     }
-    sp_per_bin(static_cast<std::int64_t>(sz));
   }
 
   Acts::SpacePointContainer2 coreSpacePoints(
