@@ -36,7 +36,7 @@ Each row maps a thesis figure or table to the script that produces it. The data-
 | Table 6.6 | Per-stage exclusive timing breakdown (GridTriplet) | `figure-gen/Results/Detailed/StageTiming.py` |
 | Figure 6.4 (+ B.4 in appendix) | gperftools hotspot annotations (per detector and stage) | `figure-gen/Results/Detailed/GperftoolsHotspots.py` |
 | Tables 6.7, 6.8 | gperftools top-20 hotspots (Pixel/Strip Seeding2) | `figure-gen/Results/Detailed/Gperftools.py` |
-| Figure B.20 | gperftools portrait flamegraph (Pixel/Strip Seeding2) | `figure-gen/Results/Detailed/Gperftools.py` |
+| Figure B.19 | gperftools portrait flamegraph (Pixel/Strip Seeding2) | `figure-gen/Results/Detailed/Gperftools.py` |
 
 ## Code optimisations — O1 → O4 chain
 
@@ -90,4 +90,4 @@ the SphericalGridTriplet C++ defaults in `configs/spherical_defaults.yaml`.
 | Table 6.27 | Workload counts, S2 vs S3 | `figure-gen/Results/Seeding3/Workload.py` |
 | Figure 6.6 | Per-stage timing waterfall, S2 vs S3 | `figure-gen/Results/Seeding3/Waterfall.py` |
 | Figure 6.7 + Table 6.28 | Time per event vs spacepoints, S2 vs S3 | `figure-gen/Results/Seeding3/Scaling.py` |
-| Figures B.21, B.24 + Table B.1 | gperftools comparison (S2 vs S3) | `figure-gen/Results/Seeding3/Gperftools3.py` |
+| Figures B.19, B.20, B.21, B.22 + Table B.1 | gperftools comparison (S2 vs S3) | `figure-gen/Results/Seeding3/Gperftools3.py` |
