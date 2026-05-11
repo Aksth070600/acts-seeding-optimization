@@ -237,13 +237,15 @@ ProcessCode SeedingAlgorithm::execute(const AlgorithmContext& ctx) const {
   float minRange = std::numeric_limits<float>::max();
   float maxRange = std::numeric_limits<float>::lowest();
   for (const auto& coll : grid) {
-    if (coll.empty()) {
+    const auto sz = coll.size();
+    num_bins(1);
+    sp_per_bin(static_cast<std::int64_t>(sz));
+    if (sz == 0) {
       continue;
     }
-    const auto* firstEl = coll.front();
-    const auto* lastEl = coll.back();
-    minRange = std::min(firstEl->radius(), minRange);
-    maxRange = std::max(lastEl->radius(), maxRange);
+    occupied_bins(1);
+    minRange = std::min(coll.front()->radius(), minRange);
+    maxRange = std::max(coll.back()->radius(), maxRange);
   }
 
   std::array<std::vector<std::size_t>, 3ul> navigation;
@@ -252,15 +254,6 @@ ProcessCode SeedingAlgorithm::execute(const AlgorithmContext& ctx) const {
   auto spacePointsGrouping = Acts::CylindricalBinnedGroup<value_type>(
       std::move(grid), *m_bottomBinFinder, *m_topBinFinder,
       std::move(navigation));
-
-  for (const auto& [bottom, middle, top] : spacePointsGrouping) {
-    const auto sz = spacePointsGrouping.grid().at(middle).size();
-    num_bins(1);
-    if (sz > 0) {
-      occupied_bins(1);
-    }
-    sp_per_bin(static_cast<std::int64_t>(sz));
-  }
 
   /// variable middle SP radial region of interest
   const Acts::Range1D<float> rMiddleSPRange(
