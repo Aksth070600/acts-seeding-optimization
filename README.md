@@ -106,7 +106,7 @@ If you use this repository or build on this work, please cite:
   title     = {Performance Optimization of the ACTS Track Seeding Algorithm},
   year      = {2026},
   publisher = {GitHub},
-  url       = {https://github.com/thomaaks/acts-seeding-optimization} 
+  url       = {https://github.com/Aksth070600/acts-seeding-optimization} 
 }
 ```
 
