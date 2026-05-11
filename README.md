@@ -3,7 +3,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20126578.svg)](https://doi.org/10.5281/zenodo.20126578)
 [![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
 
-**Status:** Frozen at the `v1.0` release accompanying the thesis submission (Spring 2026). This snapshot is archived on Zenodo (see DOI badge above). No further commits are planned; any post-submission corrections will be made via new tagged releases.
+**Status:** Frozen at the `v1.0.2` release accompanying the thesis submission (Spring 2026). This snapshot is archived on Zenodo (see DOI badge above, which resolves to the latest release); the preceding tags `v1.0` and `v1.0.1` remain on Zenodo for full provenance. No further commits are planned; any post-submission corrections will be made via new tagged releases.
 
 This repository contains the setup, code, and scripts used to produce the results in the master's thesis
 

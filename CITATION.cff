@@ -9,8 +9,14 @@ identifiers:
     value: 10.5281/zenodo.20126578
     description: Concept DOI for all versions (always resolves to the latest release)
   - type: doi
+    value: 10.5281/zenodo.20128085
+    description: Version DOI for the v1.0.2 thesis-submission snapshot
+  - type: doi
+    value: 10.5281/zenodo.20127757
+    description: Version DOI for the v1.0.1 post-submission patch
+  - type: doi
     value: 10.5281/zenodo.20126579
-    description: Version DOI for the v1.0 thesis-submission snapshot
+    description: Version DOI for the initial v1.0 release
 authors:
   - family-names: Aksdal
     given-names: Thomas
