@@ -104,12 +104,6 @@ def total_bins_per_event(stats: dict) -> float:
     return get(stats, 'num_bins', 'count_per_event')
 
 
-def axis2_bins(stats: dict) -> float:
-    v = (stats.get('grid_z_bins', {}).get('mean')
-         or stats.get('grid_eta_bins', {}).get('mean'))
-    return float(v) if v else float('nan')
-
-
 def empty_bins_pct(stats: dict) -> float:
     total = total_bins_per_event(stats)
     occupied = get(stats, 'occupied_bins', 'count_per_event')
@@ -121,9 +115,6 @@ def empty_bins_pct(stats: dict) -> float:
 STAGES = [
     ("Grid", [
         ("Total bins",                total_bins_per_event,                                       fi),
-        (r"$n_\phi$ bins",            lambda s: get(s, 'grid_phi_bins', 'mean'),                  fi),
-        (r"$n_{z/\eta}$ bins",        axis2_bins,                                                 fi),
-        (r"$n_r$ bins",               lambda s: get(s, 'grid_r_bins', 'mean'),                    fi),
         ("Occupied bins",             lambda s: get(s, 'occupied_bins', 'count_per_event'),       fi),
         (r"Empty bins [\%]",          empty_bins_pct,                                             lambda v: ff(v, 2)),
         ("Mean SPs per occupied bin", lambda s: get(s, 'sp_per_bin', 'total_per_occupied'),       lambda v: ff(v, 2)),
