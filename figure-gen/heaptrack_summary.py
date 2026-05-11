@@ -20,17 +20,17 @@ ODD_FUNCTIONS: list[HeaptrackPair] = [
     HeaptrackPair(
         label           = r"GridTripletSeedingAlgorithm::execute",
         base_peak_bytes = 2_200_000, base_allocs =  77_381,
-        var_peak_bytes  = 1_700_000, var_allocs  = 120_524,
+        var_peak_bytes  = 1_600_000, var_allocs  = 114_310,
     ),
     HeaptrackPair(
         label           = r"TripletSeeder::createSeedsFromGroups",
         base_peak_bytes = 60_800,    base_allocs = 75_571,
-        var_peak_bytes  = 10_500,    var_allocs  = 71_659,
+        var_peak_bytes  = 10_300,    var_allocs  = 70_436,
     ),
     HeaptrackPair(
         label           = r"SpacePointGrid2::insert",
         base_peak_bytes = 0,         base_allocs =  1_622,
-        var_peak_bytes  = 0,         var_allocs  = 48_662,
+        var_peak_bytes  = 0,         var_allocs  = 43_674,
     ),
 ]
 
