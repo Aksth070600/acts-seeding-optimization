@@ -169,15 +169,15 @@ def build_tabular(cyl_ev: dict, sph_ev: dict) -> str:
     s_empty = _empty_pct(s["bins_per_event"], s["populated_bins"])
 
     rows = [
-        _row_int("Space points / event",       c["sps_per_event"],       s["sps_per_event"]),
-        _row_int(r"$\phi$ bins",               c["phi_bins"],            s["phi_bins"]),
-        _row_int(r"$\eta$ / $z$ bins",         c["axis2_bins"],          s["axis2_bins"]),
-        _row_int("$r$ bins",                   c["r_bins"],              s["r_bins"]),
-        _row_int("Bins / event",               c["bins_per_event"],      s["bins_per_event"]),
-        _row_int("Populated bins / event",     c["populated_bins"],      s["populated_bins"]),
+        _row_int("Total space points",         c["sps_per_event"],       s["sps_per_event"]),
+        _row_int(r"$n_\phi$ bins",             c["phi_bins"],            s["phi_bins"]),
+        _row_int(r"$n_{z/\eta}$ bins",         c["axis2_bins"],          s["axis2_bins"]),
+        _row_int(r"$n_r$ bins",                c["r_bins"],              s["r_bins"]),
+        _row_int("Total bins",                 c["bins_per_event"],      s["bins_per_event"]),
+        _row_int("Occupied bins",              c["populated_bins"],      s["populated_bins"]),
         _row_f2 (r"Empty bins [\%]",           c_empty,                   s_empty),
-        _row_f2 ("Mean SPs per populated bin", c["mean_sps_per_pop_bin"], s["mean_sps_per_pop_bin"]),
-        _row_int("Seeds / event",              c["seeds_per_event"],     s["seeds_per_event"]),
+        _row_f2 ("Mean SPs per occupied bin",  c["mean_sps_per_pop_bin"], s["mean_sps_per_pop_bin"]),
+        _row_int("Total seeds",                c["seeds_per_event"],     s["seeds_per_event"]),
     ]
 
     lines = [
